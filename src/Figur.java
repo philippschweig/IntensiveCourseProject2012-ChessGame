@@ -17,7 +17,7 @@ abstract class Figur
 	// Status ob Figur besiegt ist
 	public boolean besiegt = false;
 	
-	// Methoden
+	// Konstruktor
 	public Figur(String name, Position pos, int farbe, Schachfeld[][] felderTemp)
 	{
 		this.alleFelder = felderTemp;
@@ -28,11 +28,13 @@ abstract class Figur
 		System.out.println("Figur/Figur# farbe: " + this.farbe);
 	}
 	
-	// Figur aufs Spielfeld setzen
+	// Methoden
+	// Neues Spielfeld referenzieren
 	public void setze(Schachfeld fTemp)
 	{
 		this.feld = fTemp;
 	}
+	
 	// Figur bewegen
 	public void bewege(Position pos, Schachfeld feldAlt, Schachfeld feldNeu)
 	{
@@ -49,15 +51,26 @@ abstract class Figur
 		this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
 		this.feld.setzeFigur(this);
 	}
+	
+	// Figur austauschen
+	public void austauschen()
+	{
+		System.out.println("Figur/austauschen # remove");
+		Spiel.getInstance().aktuellerSpieler().schachfiguren.remove(this);
+		System.out.println("Figur/austauschen # loescheFigur");
+		this.feld.loescheFigur();
+	}
+	
 	// Figur besiegen
 	public void besiege()
 	{
 		this.besiegt = true;
-		System.out.println("Figur/besiege # remouve");
+		System.out.println("Figur/besiege # remove");
 		Spiel.getInstance().gegnerischerSpieler().schachfiguren.remove(this);
 		System.out.println("Figur/besiege # loescheFigur");
 		this.feld.loescheFigur();
 	}
+	
 	// Mögl. Züge anzeigen
 	public abstract List<Position> zuege();
 	
@@ -72,5 +85,21 @@ abstract class Figur
 		{
 			return -wert;
 		}
+	}
+	
+	// Statische Methoden
+	public static Figur getFromList(List<Figur> figuren)
+	{
+		Figur f = null;
+		
+		for(int x = 0; x < figuren.size(); x++)
+		{
+			if(figuren.get(x) instanceof F_Koenig)
+			{
+				return figuren.get(x);
+			}
+		}
+		
+		return f;
 	}
 }

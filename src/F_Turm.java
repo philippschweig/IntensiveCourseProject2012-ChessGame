@@ -34,6 +34,14 @@ public class F_Turm extends Figur
 		super.bewege(pos, feldAlt, feldNeu);
 	}
 	
+	public void rochade(boolean kleineRochade)
+	{
+		Position pos;
+		
+		if(kleineRochade) this.bewege(pos = new Position(this.pos.zahl, this.pos.buchstabe - 2), this.alleFelder[this.pos.zahl][this.pos.buchstabe], this.alleFelder[pos.zahl][pos.buchstabe]);
+		else this.bewege(pos = new Position(this.pos.zahl, this.pos.buchstabe + 2), this.alleFelder[this.pos.zahl][this.pos.buchstabe], this.alleFelder[pos.zahl][pos.buchstabe]);
+	}
+	
 	// Mögl. Züge anzeigen
 	public List<Position> zuege()
 	{

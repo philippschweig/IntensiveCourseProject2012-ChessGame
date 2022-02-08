@@ -184,7 +184,10 @@ public class Schachbrett extends JPanel implements MouseListener
 		for(int i = 0; i < figuren.size(); i++)
 		{
 			//this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].feldAktivieren(new Color(136, 255, 0));
-			this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].feldAktivieren(new Color(185, 255, 135));
+			if(figuren.get(i).zuege().size() > 0)
+			{
+				this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].feldAktivieren(new Color(185, 255, 135));
+			}
 		}
 	}
 	

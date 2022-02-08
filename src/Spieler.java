@@ -89,9 +89,78 @@ public class Spieler
 	
 	public void aktiviereZug()
 	{
-		//Spieler.debugFiguren(this.schachfiguren);
-		System.out.println("Spieler/aktiviereZug # *******************************************");
-		this.b.figurenAktivieren(this.schachfiguren);
+		boolean schachmatt = false;
+		/*F_Koenig koenig = (F_Koenig)Figur.getFromList(this.schachfiguren);
+		List<Position> koenigZuege = koenig.zuege();
+		
+		if(koenigZuege.size() > 0)
+		{
+			// Auf Schach bzw. Schach-Matt prüfen # start			
+			List<Position> gegnerZuege = Spiel.getInstance().gegnerischerSpieler().alleMoeglichenZuege();
+			
+			// Prüfen, ob der König im Schach bzw. Schach-Matt steht
+			boolean schach[] = new boolean[koenigZuege.size()];
+			
+			for(int x = 0; x < koenigZuege.size(); x++)
+			{
+				for(int y = 0; y < gegnerZuege.size(); y++)
+				{
+					if(koenigZuege.get(x) == gegnerZuege.get(y))
+					{
+						schach[x] = true;
+					}
+				}
+			}
+			
+			// Prüfen, ob Schach-Matt
+			schachmatt = true;
+			for(int y = 0, z = 0; y < schach.length; y++)
+			{
+				if(!schach[y])
+				{
+					schachmatt = false;
+					break;
+				}
+			}
+		}*/
+		
+		if(!schachmatt)
+		{
+			//Spieler.debugFiguren(this.schachfiguren);
+			System.out.println("Spieler/aktiviereZug # *******************************************");
+			this.b.figurenAktivieren(this.schachfiguren);
+		}
+		// Auf Schach bzw. Schach-Matt prüfen # ende
+	}
+	
+	public List<Position> alleMoeglichenZuege()
+	{
+		List<Position> zuege = new ArrayList<Position>();
+		
+		// Alle Figuren durchgehen
+		for(int i = 0; i < Spiel.getInstance().gegnerischerSpieler().schachfiguren.size(); i++)
+		{
+			zuege.addAll(Spiel.getInstance().gegnerischerSpieler().schachfiguren.get(i).zuege());
+		}
+		
+		// Doppelte Einträge löschen
+		HashSet<Position> hashSet = new HashSet<Position>(zuege);
+		zuege.clear();
+		zuege.addAll(hashSet);
+		
+		// Alle Angriffszüge rausfiltern
+		/*for(int b = 0; b < zuege.size(); b++)
+		{
+			if(!zuege.get(b).angriff)
+			{
+				zuege.remove(b);
+				b--;
+			}
+		}*/
+		
+		Position.debugPositionList(zuege);
+		
+		return zuege;
 	}
 	
 	public static void debugFiguren(java.util.List<Figur> figuren)

@@ -30,11 +30,11 @@
 
 04.02.12 - 05.02.12
 - kleine Änderungen
+- Regeln den einzelnen Figuren hinzugefügt
+-- Rochade angelegt
 
 06.02.12
 - Klassen GUIObjektDaten und Koordinaten angelegt
-- Regeln den einzelnen Figuren hinzugefügt
--- Rochade angelegt
 - Figuren können sich nun bewegen
 
 08.02.12
@@ -42,3 +42,11 @@
 
 10.02.12
 - Spiel ist erstmal spielbar, es fehlen noch ein paar Regeln
+
+24.02.12
+- Tools-Klasse angelegt
+- Rochade fertiggestellt
+- Bauern können jetzt schonmal als Dame ausgestauscht werden, wenn sie am Ende angekommen sind
+-- Auswahl für alle Figuren folgt
+- Nach Spielende Möglichkeit zum zurückgehen hinzugefügt
+- Bei Figurauswahl nur noch die anklickbar, die auch versetzt werden können

@@ -22,6 +22,7 @@ public class F_Bauer extends Figur
 		
 		this.ersterZug = true;
 	}
+	
 	// Figur bewegen
 	public void bewege(Position pos, Schachfeld feldAlt, Schachfeld feldNeu)
 	{
@@ -31,6 +32,18 @@ public class F_Bauer extends Figur
 		}
 		
 		super.bewege(pos, feldAlt, feldNeu);
+		
+		if(pos.zahl == 1 || pos.zahl == 8)
+		{
+			this.austauschen();
+			
+			// Figurauswahl
+			// ...
+			
+			Figur f = new F_Dame("Dame", pos, this.farbe, this.alleFelder);
+			Spiel.getInstance().aktuellerSpieler().schachfiguren.add(f);
+			feldNeu.setzeFigur(f);
+		}
 	}
 	
 	// Mögl. Züge anzeigen

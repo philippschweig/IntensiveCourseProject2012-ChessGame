@@ -31,34 +31,60 @@ public class F_Koenig extends Figur
 	// Figur bewegen
 	public void bewege(Position pos, Schachfeld feldAlt, Schachfeld feldNeu)
 	{
-		Figur tempFigur = null;
+		//Figur tempFigur = null;
 		
 		if(ersterZug)
 		{
 			this.ersterZug = false;
 			
+			// Pr¸fen ob die Position mehr als ein Schritt ist
+			int schrittlaenge = Tools.betrag(this.pos.buchstabe - pos.buchstabe);
+			if(schrittlaenge > 1)
+			{
+				// Pr¸ft ob kleine oder Groﬂe Rochade
+				// Kleine Rochade
+				if(schrittlaenge == 2)
+				{
+					((F_Turm)this.alleFelder[this.pos.zahl][8].figur).rochade(true);
+				}
+				// Groﬂe Rochade
+				else
+				{
+					((F_Turm)this.alleFelder[this.pos.zahl][1].figur).rochade(false);
+				}
+			}
+			
 			// Rochade vollziehen
-			if(feldNeu.figur instanceof F_Turm)
+			if(pos.rochade == true)
+			{
+				System.out.println("rochade");
+				
+			}
+			
+			/*if(feldNeu.figur instanceof F_Turm)
 			{
 				if(((F_Turm)feldNeu.figur).ersterZug)
 				{
 					tempFigur = feldNeu.figur;
 					tempFigur.pos = this.pos;
 				}
-			}
+			}*/
 		}
-		else
+		
+		super.bewege(pos, feldAlt, feldNeu);
+		
+		/*else
 		{
 			if(feldNeu.figur != null)
 			{
-				System.out.println("Figur/bewege # besiege");
+				System.out.println("F_Koenig/bewege # besiege");
 				feldNeu.figur.besiege();
 			}
 		}
 		
 		this.setze(feldNeu);
 		feldAlt.loescheFigur();
-		System.out.println("Figur/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
+		System.out.println("F_Koenig/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
 		this.pos = pos;
 		this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
 		this.feld.setzeFigur(this);
@@ -68,7 +94,7 @@ public class F_Koenig extends Figur
 			tempFigur.setze(feldAlt);
 			tempFigur.alleFelder[tempFigur.pos.zahl][tempFigur.pos.buchstabe].figur = tempFigur;
 			tempFigur.feld.setzeFigur(tempFigur);
-		}
+		}*/
 	}
 	// Figur besiegen
 	public void besiege()
@@ -85,25 +111,32 @@ public class F_Koenig extends Figur
 		if(this.ersterZug)
 		{
 			// kleine Rochade
-			if(alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur != null)
+			if(this.alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur != null)
 			{
-				if(alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur instanceof F_Turm)
+				if(this.alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur instanceof F_Turm)
 				{
-					if(((F_Turm)alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur).ersterZug)
+					if(((F_Turm)this.alleFelder[this.pos.zahl][this.pos.buchstabe + 3].figur).ersterZug)
 					{
-						moeglichePositionen.add( new Position(this.pos.zahl, this.pos.buchstabe + 3, false) );
+						if(this.alleFelder[this.pos.zahl][this.pos.buchstabe + 1].figur == null && this.alleFelder[this.pos.zahl][this.pos.buchstabe + 2].figur == null)
+						{
+							moeglichePositionen.add(new Position(this.pos.zahl, this.pos.buchstabe + 2,	false));
+						}
+						
 					}
 				}
 			}
 			
 			// groﬂe Rochade
-			if(alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur != null)
+			if(this.alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur != null)
 			{
-				if(alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur instanceof F_Turm)
+				if(this.alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur instanceof F_Turm)
 				{
-					if(((F_Turm)alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur).ersterZug)
+					if(((F_Turm)this.alleFelder[this.pos.zahl][this.pos.buchstabe - 4].figur).ersterZug)
 					{
-						moeglichePositionen.add( new Position(this.pos.zahl, this.pos.buchstabe - 4, false) );
+						if(this.alleFelder[this.pos.zahl][this.pos.buchstabe - 3].figur == null && this.alleFelder[this.pos.zahl][this.pos.buchstabe - 2].figur == null)
+						{
+							moeglichePositionen.add( new Position(this.pos.zahl, this.pos.buchstabe - 3, false) );
+						}
 					}
 				}
 			}

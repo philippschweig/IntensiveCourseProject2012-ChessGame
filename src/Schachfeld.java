@@ -179,16 +179,13 @@ public class Schachfeld
 	public void feldAktivieren(Color c)
 	{
 		this.btFeld.setBackground(c);
-		this.btFeld.setVisible(true);
-		this.lbFeld.setVisible(false);
+		this.feldAktivieren();
 	}
 	
 	// 0 - Figurauswahl, 1 - Zug, 2 - Angriff
 	public void feldAktivieren(int feldart)
 	{
-		//this.btFeld.setBackground(c);
-		this.btFeld.setVisible(true);
-		this.lbFeld.setVisible(false);
+		this.feldAktivieren();
 	}
 	
 	// Deaktiviert das Feld (Button)
