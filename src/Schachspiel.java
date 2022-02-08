@@ -39,7 +39,6 @@ public class Schachspiel extends JFrame {
 		// Anfang Komponenten
 		this.schachbrett = new Schachbrett();
 		this.schachbrett.setBounds(75, 75, frameWidth - 150, frameHeight - 150);
-		//this.schachbrett.setLayout(new GridLayout(10,10,1,1));
 		cp.add(schachbrett);
 		
 		// Ende Komponenten

@@ -43,31 +43,32 @@ public class F_Bauer extends Figur
 		{
 			System.out.println("F_Bauer/zuege # zahl: " + this.pos.zahl + " buchstabe: " + this.pos.buchstabe);
 			// Pr¸ft ob dort eine Figur steht
-			if((this.alleFelder[this.pos.zahl + this.zugrichtung(1)][this.pos.buchstabe].figur == null) && (this.alleFelder[this.pos.zahl + this.zugrichtung(2)][this.pos.buchstabe].figur == null))
+			if(this.alleFelder[this.pos.zahl + this.zugrichtung(1)][this.pos.buchstabe].figur == null)
 			{
-				moeglichePositionen.add( new Position(this.pos.zahl + this.zugrichtung(1), this.pos.buchstabe, false) );
-				moeglichePositionen.add( new Position(this.pos.zahl + this.zugrichtung(2), this.pos.buchstabe, false) );
+				if(this.alleFelder[this.pos.zahl + this.zugrichtung(2)][this.pos.buchstabe].figur == null)
+				{
+					moeglichePositionen.add( new Position(this.pos.zahl + this.zugrichtung(2), this.pos.buchstabe, false) );
+				}
+				
 			}
 		}
+		
+		// Schwarze Figuren
+		if(this.farbe == 0)
+		{
+			// Position nicht am Ende und keine Figur im Weg
+			if(this.pos.zahl > 1 && this.alleFelder[this.pos.zahl - 1][this.pos.buchstabe].figur == null)
+			{
+				moeglichePositionen.add( new Position(this.pos.zahl - 1, this.pos.buchstabe, false) );
+			}
+		}
+		// Weiﬂe Figuren
 		else
 		{
-			// Schwarze Figuren
-			if(this.farbe == 0)
+			// Position nicht am Ende und keine Figur im Weg
+			if(this.pos.zahl < 8 && this.alleFelder[this.pos.zahl + 1][this.pos.buchstabe].figur == null)
 			{
-				// Position nicht am Ende und keine Figur im Weg
-				if(this.pos.zahl > 1 && this.alleFelder[this.pos.zahl - 1][this.pos.buchstabe].figur == null)
-				{
-					moeglichePositionen.add( new Position(this.pos.zahl - 1, this.pos.buchstabe, false) );
-				}
-			}
-			// Weiﬂe Figuren
-			else
-			{
-				// Position nicht am Ende und keine Figur im Weg
-				if(this.pos.zahl < 8 && this.alleFelder[this.pos.zahl + 1][this.pos.buchstabe].figur == null)
-				{
-					moeglichePositionen.add( new Position(this.pos.zahl + 1, this.pos.buchstabe, false) );
-				}
+				moeglichePositionen.add( new Position(this.pos.zahl + 1, this.pos.buchstabe, false) );
 			}
 		}
 		

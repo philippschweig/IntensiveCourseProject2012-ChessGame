@@ -9,10 +9,7 @@ public class Spiel
 	
 	public static void setInstance(Schachbrett bTemp)
 	{
-		if(instance == null)
-		{
-			instance = new Spiel(bTemp);
-		}
+		instance = new Spiel(bTemp);
 	}
 	
 	// Eigenschaften

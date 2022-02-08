@@ -41,8 +41,14 @@ public class Schachfeld
 			
 			//this.btFeld = new JButton("B: " + spalte + ", Z: " + zeile);
 			this.btFeld = new JButton(this.icon);
-			this.btFeld.setMargin(new Insets(2, 2, 2, 2));
+			this.btFeld.setMargin(new Insets(0, 0, 0, 0));
+			this.btFeld.setBorder(null);
+			this.btFeld.setBorderPainted(false);
+			//this.btFeld.setRolloverEnabled(true);
+			//this.btFeld.setRolloverIcon(new ImageIcon(this.getClass().getResource("img/rollover.png")));
+			
 			this.btFeld.setVisible(false);
+			//this.btFeld.setEnabled(false);
 			
 			if( this.schwarzesFeld(spalte, zeile) )
 			{
