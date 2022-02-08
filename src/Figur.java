@@ -38,21 +38,24 @@ abstract class Figur
 	{
 		if(feldNeu.figur != null)
 		{
+			System.out.println("Figur/bewege # besiege");
 			feldNeu.figur.besiege();
 		}
 		
 		this.setze(feldNeu);
 		feldAlt.loescheFigur();
-		System.out.println("Figur/bewege # Buchstabe: " + pos.buchstabe + " Zahl: " + pos.zahl);
+		System.out.println("Figur/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
 		this.pos = pos;
-		this.alleFelder[this.pos.buchstabe][this.pos.zahl].figur = this;
+		this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
 		this.feld.setzeFigur(this);
 	}
 	// Figur besiegen
 	public void besiege()
 	{
 		this.besiegt = true;
+		System.out.println("Figur/besiege # remouve");
 		Spiel.getInstance().gegnerischerSpieler().schachfiguren.remove(this);
+		System.out.println("Figur/besiege # loescheFigur");
 		this.feld.loescheFigur();
 	}
 	// Mögl. Züge anzeigen

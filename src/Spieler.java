@@ -33,8 +33,23 @@ public class Spieler
 				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(7,i), this.farbe, this.b.felder) );
 			}
 			
+			// Turm
+			this.schachfiguren.add( new F_Turm("Turm", new Position(8,1), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Turm("Turm", new Position(8,8), this.farbe, this.b.felder) );
+			
+			// Springer
+			this.schachfiguren.add( new F_Springer("Springer", new Position(8,2), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Springer("Springer", new Position(8,7), this.farbe, this.b.felder) );
+			
+			// Läufer
+			this.schachfiguren.add( new F_Laeufer("Läufer", new Position(8,3), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Laeufer("Läufer", new Position(8,6), this.farbe, this.b.felder) );
+			
 			// Dame
-			//this.schachfiguren.add( new F_Dame("Dame", new Position(8,4), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Dame("Dame", new Position(8,4), this.farbe, this.b.felder) );
+			
+			// König
+			this.schachfiguren.add( new F_Koenig("König", new Position(8,5), this.farbe, this.b.felder) );
 		}
 		// Weiße Figuren
 		else
@@ -46,8 +61,23 @@ public class Spieler
 				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(2,i), this.farbe, this.b.felder) );
 			}
 			
+			// Turm
+			this.schachfiguren.add( new F_Turm("Turm", new Position(1,1), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Turm("Turm", new Position(1,8), this.farbe, this.b.felder) );
+			
+			// Springer
+			this.schachfiguren.add( new F_Springer("Springer", new Position(1,2), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Springer("Springer", new Position(1,7), this.farbe, this.b.felder) );
+			
+			// Läufer
+			this.schachfiguren.add( new F_Laeufer("Läufer", new Position(1,3), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Laeufer("Läufer", new Position(1,6), this.farbe, this.b.felder) );
+			
 			// Dame
-			//this.schachfiguren.add( new F_Dame("Dame", new Position(1,4), this.farbe, this.b.felder) );
+			this.schachfiguren.add( new F_Dame("Dame", new Position(1,4), this.farbe, this.b.felder) );
+			
+			// König
+			this.schachfiguren.add( new F_Koenig("Koenig", new Position(1,5), this.farbe, this.b.felder) );
 		}
 	}
 	
@@ -60,6 +90,7 @@ public class Spieler
 	public void aktiviereZug()
 	{
 		//Spieler.debugFiguren(this.schachfiguren);
+		System.out.println("Spieler/aktiviereZug # *******************************************");
 		this.b.figurenAktivieren(this.schachfiguren);
 	}
 	
@@ -70,7 +101,7 @@ public class Spieler
 			System.out.println("Spieler/debugFiguren # Name: " + figuren.get(x).name);
 			System.out.println("******************** # Farbe: " + figuren.get(x).farbe);
 			System.out.println("******************** # Besiegt: " + figuren.get(x).besiegt);
-			System.out.println("******************** # Position: Buchstabe " + figuren.get(x).pos.buchstabe + ", Zahl " + figuren.get(x).pos.zahl);
+			System.out.println("******************** # Position: zahl " + figuren.get(x).pos.zahl + ", buchstabe " + figuren.get(x).pos.buchstabe);
 		}
 	}
 }

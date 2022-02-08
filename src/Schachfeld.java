@@ -13,6 +13,7 @@ public class Schachfeld
 	
 	public JButton btFeld = null;
 	private JLabel lbFeld = null;
+	private ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Leer.gif"));
 	
 	private Position pos;
 	private boolean statusAuswahl;
@@ -26,18 +27,20 @@ public class Schachfeld
 		this.b = bTemp;
 		
 		// Setzt das Label
-		this.lbFeld = new JLabel(feldbeschreibung);
-		this.lbFeld.setHorizontalAlignment(JLabel.CENTER);
 		
 		// Prüft ob das Feld ein Figurenfeld ist
 		if(figurfeld)
 		{
+			this.lbFeld = new JLabel(this.icon);
+			this.lbFeld.setHorizontalAlignment(JLabel.CENTER);
+			
 			this.pos = new Position(spalte, zeile);
 			
 			this.lbFeld.setOpaque(true);
 			this.lbFeld.setVisible(true);
 			
-			this.btFeld = new JButton("B: " + spalte + ", Z: " + zeile);
+			//this.btFeld = new JButton("B: " + spalte + ", Z: " + zeile);
+			this.btFeld = new JButton(this.icon);
 			this.btFeld.setMargin(new Insets(2, 2, 2, 2));
 			this.btFeld.setVisible(false);
 			
@@ -68,6 +71,11 @@ public class Schachfeld
 			
 			this.add(this.btFeld, spalte, zeile, 1.0, 1.0);
 		}
+		else
+		{
+			this.lbFeld = new JLabel(feldbeschreibung);
+			this.lbFeld.setHorizontalAlignment(JLabel.CENTER);
+		}
 		
 		this.add(this.lbFeld, spalte, zeile, 1.0, 1.0);
 	}
@@ -80,10 +88,12 @@ public class Schachfeld
 	{
 		this.figur = figur;
 		
-		this.lbFeld.setText(this.figur.name);
+		//this.lbFeld.setText(this.figur.name);
+		this.lbFeld.setIcon(this.figur.icon);
 		this.lbFeld.setVisible(false);
 		
-		this.btFeld.setText(this.figur.name);
+		//this.btFeld.setText(this.figur.name);
+		this.btFeld.setIcon(this.figur.icon);
 		this.btFeld.setVisible(true);
 	}
 	
@@ -93,10 +103,12 @@ public class Schachfeld
 		System.out.println("Schachfeld/loescheFigur # ");
 		this.figur = null;
 		
-		this.lbFeld.setText("");
+		//this.lbFeld.setText("");
+		this.lbFeld.setIcon(this.icon);
 		this.lbFeld.setVisible(true);
 		
-		this.btFeld.setText("");
+		//this.btFeld.setText("");
+		this.btFeld.setIcon(this.icon);
 		this.btFeld.setVisible(false);
 	}
 	
@@ -105,6 +117,7 @@ public class Schachfeld
 		// TODO hier Quelltext einfügen
 		if(!this.b.statusAngriff)
 		{
+			System.out.println("Schachfeld/btFeld_ActionPerformed # Mögliche Züge anzeigen *******");
 			this.b.statusAngriff = true;
 			this.b.gewaehltesFeld = this;
 			this.b.alleFelderDeaktivieren();
@@ -120,7 +133,7 @@ public class Schachfeld
 	}
 	
 	// Prüft ob das Feld mit der gegebenen Spalte und Ziele ein schwarzes Feld ist
-	// True: schwartes Feld
+	// True: schwarzes Feld
 	// False: weißes Feld
 	private boolean schwarzesFeld(int spalte, int zeile)
 	{
@@ -158,9 +171,33 @@ public class Schachfeld
 		this.lbFeld.setVisible(false);
 	}
 	
+	public void feldAktivieren(Color c)
+	{
+		this.btFeld.setBackground(c);
+		this.btFeld.setVisible(true);
+		this.lbFeld.setVisible(false);
+	}
+	
+	// 0 - Figurauswahl, 1 - Zug, 2 - Angriff
+	public void feldAktivieren(int feldart)
+	{
+		//this.btFeld.setBackground(c);
+		this.btFeld.setVisible(true);
+		this.lbFeld.setVisible(false);
+	}
+	
 	// Deaktiviert das Feld (Button)
 	public void feldDeaktivieren()
 	{
+		if(schwarzesFeld(pos.zahl, pos.buchstabe))
+		{
+			this.btFeld.setBackground(Color.BLACK);
+		}
+		else
+		{
+			this.btFeld.setBackground(Color.WHITE);
+		}
+		
 		this.btFeld.setVisible(false);
 		this.lbFeld.setVisible(true);
 	}

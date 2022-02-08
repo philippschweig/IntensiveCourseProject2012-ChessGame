@@ -8,7 +8,7 @@ public class Schachbrett extends JPanel implements MouseListener
 {
 	// Eigenschaften
 	public boolean statusAngriff = false;
-	// [Buchstaben][Zahlen]
+	// [zahln][buchstabeen]
 	public Schachfeld felder[][] = new Schachfeld[10][10];
 	public Schachfeld gewaehltesFeld;
 	
@@ -29,9 +29,9 @@ public class Schachbrett extends JPanel implements MouseListener
 			{
 				figurFeld = false;
 				
-				if((f2 == 0 || f2 == 9) && (f1 > 0 && f1 < 9))
+				if((f1 == 0 || f1 == 9) && (f2 > 0 && f2 < 9))
 				{
-					switch(f1)
+					switch(f2)
 					{
 						case 1:
 							feldbeschreibung = "A";
@@ -58,9 +58,9 @@ public class Schachbrett extends JPanel implements MouseListener
 							feldbeschreibung = "H";
 							break;
 					}
-				} else if((f1 == 0 || f1 == 9) && (f2 > 0 && f2 < 9))
+				} else if((f2 == 0 || f2 == 9) && (f1 > 0 && f1 < 9))
 				{
-					feldbeschreibung = ""+f2;
+					feldbeschreibung = ""+f1;
 				}
 				else if((f1 == 0 || f1 == 9) && (f2 == 0 || f2 == 9))
 				{
@@ -86,19 +86,35 @@ public class Schachbrett extends JPanel implements MouseListener
 	{
 		for(int i = 0; i < figuren.size(); i++)
 		{
-			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].setzeFigur(figuren.get(i));
+			figuren.get(i).setze(this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe]);
+			this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].setzeFigur(figuren.get(i));
+			
 		}
 	}
 	
 	public void feldAktivieren(Position pos)
 	{
-		System.out.println("Schachbrett/feldAktivieren # Buchstabe: " + pos.buchstabe + " Zahl: " + pos.zahl);
-		this.felder[pos.buchstabe][pos.zahl].feldAktivieren();
+		System.out.println("Schachbrett/feldAktivieren # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
+		if(pos.spielzug)
+		{
+			if(pos.angriff)
+			{
+				this.felder[pos.zahl][pos.buchstabe].feldAktivieren(new Color(135, 0, 0));
+			}
+			else
+			{
+				this.felder[pos.zahl][pos.buchstabe].feldAktivieren(new Color(0, 106, 255));
+			}
+		}
+		else
+		{
+			this.felder[pos.zahl][pos.buchstabe].feldAktivieren();
+		}
 	}
 	
 	public void feldDeaktivieren(Position pos)
 	{
-		this.felder[pos.buchstabe][pos.zahl].feldDeaktivieren();
+		this.felder[pos.zahl][pos.buchstabe].feldDeaktivieren();
 	}
 	
 	public void felderAktivieren(java.util.List<Position> positionen)
@@ -132,7 +148,7 @@ public class Schachbrett extends JPanel implements MouseListener
 	{
 		for(int i = 0; i < figuren.size(); i++)
 		{
-			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].feldAktivieren();
+			this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].feldAktivieren(new Color(136, 255, 0));
 		}
 	}
 	
@@ -140,7 +156,7 @@ public class Schachbrett extends JPanel implements MouseListener
 	{
 		for(int i = 0; i < figuren.size(); i++)
 		{
-			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].feldDeaktivieren();
+			this.felder[figuren.get(i).pos.zahl][figuren.get(i).pos.buchstabe].feldDeaktivieren();
 		}
 	}
 	
