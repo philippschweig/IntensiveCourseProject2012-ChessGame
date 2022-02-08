@@ -1,13 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Schachbrett extends Panel
 {
 	// Eigenschaften
 	// [Buchstaben][]
-	Schachfeld felder[][] = new Schachfeld[10][10];
+	public Schachfeld felder[][] = new Schachfeld[10][10];
 	// Konstruktor
-	Schachbrett()
+	public Schachbrett()
 	{
 		super(null);
 		
@@ -50,6 +51,10 @@ public class Schachbrett extends Panel
 				{
 					feldbeschreibung = ""+f2;
 				}
+				else if((f1 == 0 || f1 == 9) && (f2 == 0 || f2 == 9))
+				{
+					feldbeschreibung = "";
+				}
 				else
 				{
 					feldbeschreibung = "B" + f1 + ", Z" + f2;
@@ -62,5 +67,8 @@ public class Schachbrett extends Panel
 	}
 	
 	// Methoden
-	
+	public void setzeFiguren(java.util.List<Schachfigur> figuren)
+	{
+		
+	}
 }

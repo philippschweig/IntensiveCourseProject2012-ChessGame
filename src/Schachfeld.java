@@ -4,16 +4,26 @@ import java.awt.event.*;
 public class Schachfeld
 {
 	// Eigenschaften
-	Button btFeld = null;
-	Label lbFeld = null;
+	private Schachbrett b;
+	private Schachfigur figur = null;
+	
+	private Button btFeld = null;
+	private Label lbFeld = null;
+	
 	// Konstruktor
-	Schachfeld(String feldbeschreibung, Schachbrett b)
+	public Schachfeld(String feldbeschreibung, Schachbrett bTemp)
 	{
 		//this.btFeld = new Button("Test");
+		this.b = bTemp;
 		this.lbFeld = new Label(feldbeschreibung);
-		b.add(this.lbFeld);
+		this.b.add(this.lbFeld);
 	}
 	
 	// Methoden
 	
+	public void setzeFigur(Schachfigur figurTemp)
+	{
+		this.figur = figurTemp;
+		lbFeld.setText(this.figur.getName());
+	}
 }

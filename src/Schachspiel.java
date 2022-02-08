@@ -11,7 +11,8 @@ import java.awt.event.*;
 
 public class Schachspiel extends Frame {
 	// Anfang Attribute
-	private Schachbrett schachbrett = new Schachbrett();
+	private Schachbrett schachbrett;
+	private static Spiel spiel;
 	// Ende Attribute
 
 	public Schachspiel(String title) {
@@ -21,8 +22,8 @@ public class Schachspiel extends Frame {
 			public void windowClosing(WindowEvent evt) { dispose(); }
 		});
 		
-		int frameWidth = 600;
-		int frameHeight = 600;
+		int frameWidth = 700;
+		int frameHeight = 700;
 		setSize(frameWidth, frameHeight);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (d.width - getSize().width) / 2;
@@ -32,7 +33,8 @@ public class Schachspiel extends Frame {
 		add(cp);
 		
 		// Anfang Komponenten
-		this.schachbrett.setBounds(100, 100, 400, 400);
+		this.schachbrett = new Schachbrett();
+		this.schachbrett.setBounds(75, 75, frameWidth - 200, frameHeight - 200);
 		this.schachbrett.setLayout(new GridLayout(10,10,1,1));
 		cp.add(schachbrett);
 		
@@ -47,5 +49,7 @@ public class Schachspiel extends Frame {
 
 	public static void main(String[] args) {
 		new Schachspiel("Schachspiel");
+		
+		spiel = new Spiel();
 	}
 }
