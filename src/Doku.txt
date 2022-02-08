@@ -1,0 +1,6 @@
+07.01.12
+- Anlegen von Klassendateien
+-- Position, Schachfigur, SF_Bauer, SF_Dame, SF_Koenig, SF_Laeufer, SF_Springer, SF_Turm, Spiel, Schachbrett
+
+13.01.12
+- 
