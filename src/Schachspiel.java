@@ -14,16 +14,19 @@ import javax.swing.event.*;
 public class Schachspiel extends JFrame implements IGameCallback
 {
 	// Anfang Attribute
-	private JPanel plStart;
+	private Panel plStart;
 	private Panel plSpiel;
+	private Container cp;
 	
 	// Startobjekte
-	private JLabel lbSpieler1, lbSpieler2;
-	private JTextField tfSpieler1, tfSpieler2;
+	private Label lbSpieler1, lbSpieler2;
+	private TextField tfSpieler1, tfSpieler2;
+	private Button btnNeuesSpiel;
 	
 	// Spielobjekte
 	private Schachbrett schachbrett;
-	private JButton btnNeuesSpiel, btnSpielBeenden, btnNurKoenig;
+	private Button btnSpielBeenden, btnNurKoenig;
+	private Label lbS1, lbS2;
 	// Ende Attribute
 
 	public Schachspiel(String title) {
@@ -45,37 +48,61 @@ public class Schachspiel extends JFrame implements IGameCallback
 		this.setLocation(x, y);
 		this.setResizable(false);
 		
-		Container cp = this.getContentPane();
-		cp.setLayout(new CardLayout());
+		this.cp = this.getContentPane();
+		this.cp.setLayout(new CardLayout());
 		
 		// Anfang Komponenten
 		// Startoberfläche
 		GUIObjektDaten guiStartPanel = new GUIObjektDaten(new Koordinaten(GUIObjektDaten.zentriertX(frameWidth, 200),30), 200, 100);
 		
-		this.plStart = new JPanel(new SpringLayout());
-		this.plStart.setBounds(guiStartPanel.x(), guiStartPanel.y(), guiStartPanel.breite, guiStartPanel.hoehe);
+		this.plStart = new Panel();
+		//this.plStart.setBounds(guiStartPanel.x(), guiStartPanel.y(), guiStartPanel.breite, guiStartPanel.hoehe);
+		this.plStart.setBounds(0, 0, 100, 50);
+		this.plStart.setLayout(new GridLayout(3,2,5,5));
 		
 		//GUIObjektDaten guiSpieler = new GUIObjektDaten(75, 35);
-		this.lbSpieler1 = new JLabel("Spieler 1 (weiß):");
+		this.lbSpieler1 = new Label("Spieler 1 (weiß):");
 		this.plStart.add(this.lbSpieler1);
 		
-		this.tfSpieler1 = new JTextField(64);
-		lbSpieler1.setLabelFor(tfSpieler1);
+		this.tfSpieler1 = new TextField(64);
+		this.tfSpieler1.setText("Weiß");
+		//this.lbSpieler1.setLabelFor(tfSpieler1);
 		this.plStart.add(this.tfSpieler1);
 		
-		this.lbSpieler2 = new JLabel("Spieler 2 (schwarz):");
-		this.plStart.add(this.lbSpieler1);
+		this.lbSpieler2 = new Label("Spieler 2 (schwarz):");
+		this.plStart.add(this.lbSpieler2);
 		
-		this.tfSpieler2 = new JTextField(64);
-		lbSpieler2.setLabelFor(tfSpieler2);
+		this.tfSpieler2 = new TextField(64);
+		this.tfSpieler2.setText("Schwarz");
+		//this.lbSpieler2.setLabelFor(tfSpieler2);
 		this.plStart.add(this.tfSpieler2);
 		
-		SpringUtilities.makeCompactGrid(this.plStart, 3, 2, 6,6,6,6);
+		this.btnNeuesSpiel = new Button("Spiel starten");
 		
-		cp.add(plStart, "plStart");
+		this.btnNeuesSpiel.addActionListener(
+			new ActionListener() { 
+				public void actionPerformed(ActionEvent e) { 
+					NeuesSpiel();
+				}
+			}
+		);
+		
+		this.plStart.add(this.btnNeuesSpiel);
+		
+		//SpringUtilities.makeCompactGrid(this.plStart, 3, 2, 0,0,6,6);
+		
+		this.cp.add(plStart, "plStart");
 		
 		// Spieloberfläche
 		this.plSpiel = new Panel(null);
+		
+		this.lbS1 = new Label();
+		this.lbS1.setBounds(30, 30, 75, 35);
+		this.plSpiel.add(this.lbS1);
+		
+		this.lbS2 = new Label();
+		this.lbS2.setBounds(850, 30, 75, 35);
+		this.plSpiel.add(this.lbS2);
 		
 		// Schachbrett
 		GUIObjektDaten guiSchachbrett = new GUIObjektDaten(new Koordinaten(GUIObjektDaten.zentriertX(frameWidth, 550),30), 550, 550);
@@ -85,7 +112,7 @@ public class Schachspiel extends JFrame implements IGameCallback
 		
 		// Buttons
 		GUIObjektDaten guiNurKoenig = new GUIObjektDaten(guiSchachbrett.x(), guiSchachbrett.y() + guiSchachbrett.hoehe + 15, 100, 25);
-		this.btnNurKoenig = new JButton("Nur König");
+		this.btnNurKoenig = new Button("Nur König");
 		this.btnNurKoenig.setBounds(guiNurKoenig.x(), guiNurKoenig.y(), guiNurKoenig.breite, guiNurKoenig.hoehe);
 		
 		this.btnNurKoenig.addActionListener(
@@ -98,20 +125,26 @@ public class Schachspiel extends JFrame implements IGameCallback
 		
 		this.plSpiel.add(this.btnNurKoenig);
 		
-		cp.add(plSpiel, "plSpiel");
+		this.cp.add(plSpiel, "plSpiel");
 		
 		// Ende Komponenten
 
 		this.setVisible(true);
 		
-		this.NeuesSpiel();
+		//this.NeuesSpiel();
 	}
 
 	// Anfang Methoden
 	public void NeuesSpiel()
 	{
-		Spiel.setInstance(this.schachbrett, this);
+		Spiel.setInstance(this.schachbrett, this, this.tfSpieler2.getText(), this.tfSpieler1.getText());
 		Spiel.getInstance().starten();
+		
+		this.lbS1.setText(Spiel.getInstance().s2.name);
+		this.lbS2.setText(Spiel.getInstance().s1.name);
+		
+		CardLayout cl = (CardLayout)this.cp.getLayout();
+		cl.show(this.cp, "plSpiel");
 	}
 	
 	// IGameCallback # anfang #

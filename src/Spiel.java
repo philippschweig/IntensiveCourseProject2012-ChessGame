@@ -7,9 +7,9 @@ public class Spiel implements IKoenig
 		return instance;
 	}
 	
-	public static void setInstance(Schachbrett bTemp, IGameCallback c)
+	public static void setInstance(Schachbrett bTemp, IGameCallback c, String s1, String s2)
 	{
-		instance = new Spiel(bTemp);
+		instance = new Spiel(bTemp, s1, s2);
 		instance.callback = c;
 	}
 	
@@ -24,12 +24,12 @@ public class Spiel implements IKoenig
 	private boolean ende = false;
 	
 	// Konstruktor
-	private Spiel(Schachbrett bTemp)
+	private Spiel(Schachbrett bTemp, String s1, String s2)
 	{
 		this.b = bTemp;
 		
-		s1 = new Spieler("Schwarz", 0, this.b, this);
-		s2 = new Spieler("Weiﬂ", 1, this.b, this);
+		this.s1 = new Spieler(s1, 0, this.b, this);
+		this.s2 = new Spieler(s2, 1, this.b, this);
 	}
 	
 	// IKoenig
