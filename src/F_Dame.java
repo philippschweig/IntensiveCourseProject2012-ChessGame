@@ -1,14 +1,23 @@
+import java.util.*;
+
 public class F_Dame extends Figur
 {
 	// Eigenschaften
 	
-	// Methoden
-	public F_Dame(String name, Position pos)
+	// Konstruktor
+	public F_Dame(String name, Position pos, int farbe, Schachfeld[][] felderTemp)
 	{
-		super(name, pos);
+		super(name, pos, farbe, felderTemp);
 	}
-	// Figur bewegen
-	public void bewege() {}
+	
+	// Methoden
 	// Mögl. Züge anzeigen
-	public void zuege() {}
+	public List<Position> zuege()
+	{
+		List<Position> moeglichePositionen = new ArrayList<Position>();
+		
+		//moeglichePositionen.add( new Position(this.pos.buchstabe + 2, this.pos.zahl) );
+		
+		return moeglichePositionen;
+	}
 }

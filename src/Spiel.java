@@ -1,16 +1,30 @@
 public class Spiel
 {
+	// Globale Instanz
+	private static Spiel instance = null;
+	public static Spiel getInstance()
+	{
+		return instance;
+	}
+	
+	public static void setInstance(Schachbrett bTemp)
+	{
+		if(instance == null)
+		{
+			instance = new Spiel(bTemp);
+		}
+	}
+	
 	// Eigenschaften
 	private Schachbrett b;
 	
 	public Spieler s1;
 	public Spieler s2;
 	
-	private int aktuellerSpieler = 1;
-	
+	private int aktuellerSpieler = 2;
 	
 	// Konstruktor
-	public Spiel(Schachbrett bTemp)
+	private Spiel(Schachbrett bTemp)
 	{
 		this.b = bTemp;
 		
@@ -19,7 +33,7 @@ public class Spiel
 	}
 	
 	// Methoden
-	public Spieler aktuellerSpeiler()
+	public Spieler aktuellerSpieler()
 	{
 		if(aktuellerSpieler == 1)
 		{
@@ -31,7 +45,19 @@ public class Spiel
 		}
 	}
 	
-	public void wechseleSpieler()
+	public Spieler gegnerischerSpieler()
+	{
+		if(aktuellerSpieler == 1)
+		{
+			return s2;
+		}
+		else
+		{
+			return s1;
+		}
+	}
+	
+	public void spielerwechsel()
 	{
 		if(aktuellerSpieler == 1)
 		{
@@ -41,5 +67,12 @@ public class Spiel
 		{
 			aktuellerSpieler = 1;
 		}
+		
+		aktuellerSpieler().aktiviereZug();
+	}
+	
+	public void starten()
+	{
+		aktuellerSpieler().aktiviereZug();
 	}
 }

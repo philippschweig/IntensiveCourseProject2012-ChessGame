@@ -1,6 +1,9 @@
+import java.util.*;
+
 public class Schachfigur
 {
 	// Eigenschaften
+	private Schachbrett b;
 	private int figurart;
 	
 	private F_Bauer bauer = null;
@@ -19,17 +22,18 @@ public class Schachfigur
 			4: Springer
 			5: Turm
 	*/
-	public Schachfigur(String name, Position pos, int figurart)
+	public Schachfigur(String name, Position pos, int figurart, int farbe, Schachbrett bTemp)
 	{	
+		this.b = bTemp;
 		this.figurart = figurart;
 		
 		switch(this.figurart)
 		{
 			case 0:
-				bauer = new F_Bauer(name, pos);
+				bauer = new F_Bauer(name, pos, farbe);
 				break;
 			case 1:
-				dame = new F_Dame(name, pos);
+				dame = new F_Dame(name, pos, farbe);
 				break;
 			/*case 2:
 				koenig = new F_Koenig(name, pos);
@@ -73,13 +77,14 @@ public class Schachfigur
 	}
 	
 	// Figur bewegen
-	private void bewege()
+	public void bewege(Position pos)
 	{
 		switch(this.figurart)
 		{
 			case 0:
+				this.bauer.bewege(pos);
 				break;
-			case 1:
+			/*case 1:
 				break;
 			case 2:
 				break;
@@ -88,27 +93,29 @@ public class Schachfigur
 			case 4:
 				break;
 			case 5:
-				break;
+				break;*/
 		}
 	}
 	
 	// Mögl. Züge anzeigen
-	public void zuege()
+	public List<Position> zuege()
 	{
 		switch(this.figurart)
 		{
 			case 0:
-				break;
-			case 1:
-				break;
+				return this.bauer.zuege();
+			/*case 1:
+				return this.bauer.zuege();
 			case 2:
-				break;
+				return this.bauer.zuege();
 			case 3:
-				break;
+				return this.bauer.zuege();
 			case 4:
-				break;
+				return this.bauer.zuege();
 			case 5:
-				break;
+				return this.bauer.zuege();*/
+			default:
+				return new ArrayList<Position>();
 		}
 	}
 	
@@ -130,6 +137,27 @@ public class Schachfigur
 				return;*/
 			default:
 				return new Position(1,1);
+		}
+	}
+	
+	public int getFarbe()
+	{
+		switch(this.figurart)
+		{
+			case 0:
+				return this.bauer.farbe;
+			case 1:
+				return this.dame.farbe;
+			/*case 2:
+				return;
+			case 3:
+				return;
+			case 4:
+				return;
+			case 5:
+				return;*/
+			default:
+				return 1;
 		}
 	}
 }

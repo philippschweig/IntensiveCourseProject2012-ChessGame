@@ -20,3 +20,8 @@
 - Figur-Klasse als abstrakt deklarieren
 -- alle Klassen die von Figur erbene müssen alle abstrakten Methoden definieren
 - Dame auf's Schachfeld laden
+- Spiel mit Globaler Instanz instanziieren
+- Schachfigur Klasse löschen, da man F_#name# auf Figur setzen kann (dank Vererbung)
+- Dreh und Angelpunkt ist jetzt nicht mehr das Schachfeld sondern die Figur
+- Ordner Images angelegt
+- erstes Figurbild hinzugefügt

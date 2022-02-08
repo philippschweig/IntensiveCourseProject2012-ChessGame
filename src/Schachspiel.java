@@ -14,7 +14,6 @@ import javax.swing.event.*;
 public class Schachspiel extends JFrame {
 	// Anfang Attribute
 	private Schachbrett schachbrett;
-	private Spiel spiel;
 	// Ende Attribute
 
 	public Schachspiel(String title) {
@@ -53,7 +52,8 @@ public class Schachspiel extends JFrame {
 	// Anfang Methoden
 	public void NeuesSpiel()
 	{
-		this.spiel = new Spiel(this.schachbrett);
+		Spiel.setInstance(this.schachbrett);
+		Spiel.getInstance().starten();
 	}
 	// Ende Methoden
 

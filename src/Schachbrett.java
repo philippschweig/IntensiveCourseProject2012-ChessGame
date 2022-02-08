@@ -4,11 +4,14 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 
-public class Schachbrett extends JPanel
+public class Schachbrett extends JPanel implements MouseListener
 {
 	// Eigenschaften
-	// [Buchstaben][]
+	public boolean statusAngriff = false;
+	// [Buchstaben][Zahlen]
 	public Schachfeld felder[][] = new Schachfeld[10][10];
+	public Schachfeld gewaehltesFeld;
+	
 	public GridBagLayout gbl = new GridBagLayout();
 	// Konstruktor
 	public Schachbrett()
@@ -18,13 +21,13 @@ public class Schachbrett extends JPanel
 		this.setLayout(this.gbl);
 		
 		String feldbeschreibung = new String();
-		boolean figur;
+		boolean figurFeld;
 		
 		for(int f1 = 0; f1 < felder.length; f1++)
 		{
 			for(int f2 = 0; f2 < felder[f1].length; f2++)
 			{
-				figur = false;
+				figurFeld = false;
 				
 				if((f2 == 0 || f2 == 9) && (f1 > 0 && f1 < 9))
 				{
@@ -67,24 +70,50 @@ public class Schachbrett extends JPanel
 				{
 					//feldbeschreibung = "B" + f1 + ", Z" + f2;
 					feldbeschreibung = "";
-					figur = true;
+					figurFeld = true;
 				}
 				
 				
-				felder[f1][f2] = new Schachfeld(feldbeschreibung, this , f1, f2, figur);
+				felder[f1][f2] = new Schachfeld(feldbeschreibung, this , f1, f2, figurFeld);
 			}
 		}
+		
+		this.addMouseListener(this);
 	}
 	
 	// Methoden
-	public void setzeFiguren(java.util.List<Schachfigur> figuren)
+	public void setzeFiguren(java.util.List<Figur> figuren)
 	{
-		Schachfigur tempFigur;
-		
 		for(int i = 0; i < figuren.size(); i++)
 		{
-			tempFigur = figuren.get(i);
-			this.felder[tempFigur.getPosition().buchstabe][tempFigur.getPosition().zahl].setzeFigur(tempFigur);
+			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].setzeFigur(figuren.get(i));
+		}
+	}
+	
+	public void feldAktivieren(Position pos)
+	{
+		System.out.println("Schachbrett/feldAktivieren # Buchstabe: " + pos.buchstabe + " Zahl: " + pos.zahl);
+		this.felder[pos.buchstabe][pos.zahl].feldAktivieren();
+	}
+	
+	public void feldDeaktivieren(Position pos)
+	{
+		this.felder[pos.buchstabe][pos.zahl].feldDeaktivieren();
+	}
+	
+	public void felderAktivieren(java.util.List<Position> positionen)
+	{
+		for(int x = 0; x < positionen.size(); x++)
+		{
+			this.feldAktivieren(positionen.get(x));
+		}
+	}
+	
+	public void felderDeaktivieren(java.util.List<Position> positionen)
+	{
+		for(int x = 0; x < positionen.size(); x++)
+		{
+			this.feldDeaktivieren(positionen.get(x));
 		}
 	}
 	
@@ -99,19 +128,45 @@ public class Schachbrett extends JPanel
 		}
 	}
 	
-	public void feldDeaktivieren(Position pos)
+	public void figurenAktivieren(java.util.List<Figur> figuren)
 	{
-		this.felder[pos.buchstabe][pos.zahl].feldDeaktivieren();
-	}
-	
-	public void felderDeaktivieren(java.util.List<Schachfigur> figuren)
-	{
-		Schachfigur tempFigur;
-		
 		for(int i = 0; i < figuren.size(); i++)
 		{
-			tempFigur = figuren.get(i);
-			this.felder[tempFigur.getPosition().buchstabe][tempFigur.getPosition().zahl].feldDeaktivieren();
+			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].feldAktivieren();
 		}
+	}
+	
+	public void figurenDeaktivieren(java.util.List<Figur> figuren)
+	{
+		for(int i = 0; i < figuren.size(); i++)
+		{
+			this.felder[figuren.get(i).pos.buchstabe][figuren.get(i).pos.zahl].feldDeaktivieren();
+		}
+	}
+	
+	// Mouse
+	public void mouseClicked(MouseEvent e) {
+		if(this.statusAngriff)
+		{
+			this.statusAngriff = false;
+			this.alleFelderDeaktivieren();
+			Spiel.getInstance().aktuellerSpieler().aktiviereZug();
+		}
+	}
+
+	public void mouseEntered(MouseEvent e) {
+		//System.out.println("The mouse entered the frame.");
+	}
+
+	public void mouseExited(MouseEvent e) {
+		//System.out.println("The mouse exited the frame.");
+	}
+
+	public void mousePressed(MouseEvent e) {
+		//System.out.println("The left mouse button was pressed.");
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		//System.out.println("The left mouse button was released.");
 	}
 }
