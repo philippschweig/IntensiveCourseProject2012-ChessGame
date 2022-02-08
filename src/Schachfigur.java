@@ -21,9 +21,9 @@ public class Schachfigur
 			4: Springer
 			5: Turm
 	*/
-	public Schachfigur(String name, int figurartTemp)
+	public Schachfigur(String name, int figurart)
 	{	
-		this.figurart = figurartTemp;
+		this.figurart = figurart;
 		
 		switch(this.figurart)
 		{
@@ -51,7 +51,7 @@ public class Schachfigur
 	// Methoden
 	public String getName()
 	{
-		switch(figurart)
+		switch(this.figurart)
 		{
 			case 0:
 				return bauer.name;

@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
 /**
   *
@@ -9,52 +11,53 @@ import java.awt.event.*;
   * @author
   */
 
-public class Schachspiel extends Frame {
+public class Schachspiel extends JFrame {
 	// Anfang Attribute
 	private Schachbrett schachbrett;
-	private static Spiel spiel;
-	private Panel gamePanel;
+	private Spiel spiel;
 	// Ende Attribute
 
 	public Schachspiel(String title) {
 		// Frame-Initialisierung
 		super(title);
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent evt) { dispose(); }
-		});
+		
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
 		int frameWidth = 700;
 		int frameHeight = 700;
-		setSize(frameWidth, frameHeight);
+		this.setSize(frameWidth, frameHeight);
+		
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (d.width - getSize().width) / 2;
 		int y = (d.height - getSize().height) / 2;
-		setLocation(x, y);
-		Panel cp = new Panel(null);
-		add(cp);
+		
+		this.setLocation(x, y);
+		this.setResizable(false);
+		
+		Container cp = this.getContentPane();
+		cp.setLayout(null);
 		
 		// Anfang Komponenten
-		this.gamePanel = new Panel();
-		
-		this.schachbrett = new Schachbrett(this.gamePanel);
-		this.gamePanel.setLayout(this.schachbrett);
-		
-		//this.schachbrett.setBounds(110, 75, frameWidth - 200, frameHeight - 200);
+		this.schachbrett = new Schachbrett();
+		this.schachbrett.setBounds(75, 75, frameWidth - 200, frameHeight - 200);
 		//this.schachbrett.setLayout(new GridLayout(10,10,1,1));
-		cp.add(gamePanel);
+		cp.add(schachbrett);
 		
 		// Ende Komponenten
 
-		setResizable(true);
-		setVisible(true);
+		this.setVisible(true);
+		
+		this.NeuesSpiel();
 	}
 
 	// Anfang Methoden
+	public void NeuesSpiel()
+	{
+		this.spiel = new Spiel(this.schachbrett);
+	}
 	// Ende Methoden
 
 	public static void main(String[] args) {
 		new Schachspiel("Schachspiel");
-		
-		spiel = new Spiel();
 	}
 }

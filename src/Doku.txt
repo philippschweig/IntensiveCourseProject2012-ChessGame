@@ -8,3 +8,9 @@
 20.01.12
 - Umändern von Schachbrett Panel in GridBagLayout
 - Nach Syntaxfehlerbeheben nur noch weißes Panel -.-
+
+23.01.12
+- Umdenken: Nutzen von Swing anstatt AWT
+- Daten von 20.01.12 über Bord werfen und auf die Daten vom 13.01.12 übernehmen.
+- Anordnung des Schachbrettes durch ein GridBagLayout
+- Farben der Schachfelder gestalten

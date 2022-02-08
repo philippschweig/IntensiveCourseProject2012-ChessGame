@@ -1,27 +1,31 @@
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 import java.util.*;
 
-public class Schachbrett extends GridBagLayout
+public class Schachbrett extends JPanel
 {
 	// Eigenschaften
 	// [Buchstaben][]
-	private Panel gamePanel;
 	public Schachfeld felder[][] = new Schachfeld[10][10];
-	
+	public GridBagLayout gbl = new GridBagLayout();
 	// Konstruktor
-	public Schachbrett(Panel gamePanel)
+	public Schachbrett()
 	{
-		//super(null);
-		this.gamePanel = gamePanel;
+		super(null);
+		
+		this.setLayout(this.gbl);
 		
 		String feldbeschreibung = new String();
-		boolean figurplatz = false;
+		boolean figur;
 		
 		for(int f1 = 0; f1 < felder.length; f1++)
 		{
 			for(int f2 = 0; f2 < felder[f1].length; f2++)
 			{
+				figur = false;
+				
 				if((f2 == 0 || f2 == 9) && (f1 > 0 && f1 < 9))
 				{
 					switch(f1)
@@ -62,12 +66,11 @@ public class Schachbrett extends GridBagLayout
 				else
 				{
 					feldbeschreibung = "B" + f1 + ", Z" + f2;
-					figurplatz = true;
+					figur = true;
 				}
 				
 				
-				felder[f1][f2] = new Schachfeld(this, this.gamePanel);
-				felder[f1][f2].add(f2, f1, feldbeschreibung, figurplatz);
+				felder[f1][f2] = new Schachfeld(feldbeschreibung, this , f1, f2, figur);
 			}
 		}
 	}
