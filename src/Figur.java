@@ -48,7 +48,7 @@ abstract class Figur
 		feldAlt.loescheFigur();
 		System.out.println("Figur/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
 		this.pos = pos;
-		this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
+		//this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
 		this.feld.setzeFigur(this);
 	}
 	

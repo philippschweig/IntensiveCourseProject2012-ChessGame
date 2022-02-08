@@ -7,6 +7,7 @@ public class F_Koenig extends Figur
 	private boolean ersterZug;
 	public boolean rochade;
 	
+	// SchachMatt-Callback
 	private IKoenig callback_sm;
 	
 	// Methoden
@@ -60,41 +61,9 @@ public class F_Koenig extends Figur
 				System.out.println("rochade");
 				
 			}
-			
-			/*if(feldNeu.figur instanceof F_Turm)
-			{
-				if(((F_Turm)feldNeu.figur).ersterZug)
-				{
-					tempFigur = feldNeu.figur;
-					tempFigur.pos = this.pos;
-				}
-			}*/
 		}
 		
 		super.bewege(pos, feldAlt, feldNeu);
-		
-		/*else
-		{
-			if(feldNeu.figur != null)
-			{
-				System.out.println("F_Koenig/bewege # besiege");
-				feldNeu.figur.besiege();
-			}
-		}
-		
-		this.setze(feldNeu);
-		feldAlt.loescheFigur();
-		System.out.println("F_Koenig/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
-		this.pos = pos;
-		this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
-		this.feld.setzeFigur(this);
-		
-		if(tempFigur != null)
-		{
-			tempFigur.setze(feldAlt);
-			tempFigur.alleFelder[tempFigur.pos.zahl][tempFigur.pos.buchstabe].figur = tempFigur;
-			tempFigur.feld.setzeFigur(tempFigur);
-		}*/
 	}
 	// Figur besiegen
 	public void besiege()

@@ -96,11 +96,11 @@ public class Schachfeld
 		
 		//this.lbFeld.setText(this.figur.name);
 		this.lbFeld.setIcon(this.figur.icon);
-		this.lbFeld.setVisible(false);
+		//this.lbFeld.setVisible(false);
 		
 		//this.btFeld.setText(this.figur.name);
 		this.btFeld.setIcon(this.figur.icon);
-		this.btFeld.setVisible(true);
+		//this.btFeld.setVisible(true);
 	}
 	
 	public void loescheFigur()
@@ -131,8 +131,8 @@ public class Schachfeld
 		else
 		{
 			this.b.statusAngriff = false;
-			this.b.gewaehltesFeld.figur.bewege(this.pos, this.b.gewaehltesFeld, this);
 			this.b.alleFelderDeaktivieren();
+			this.b.gewaehltesFeld.figur.bewege(this.pos, this.b.gewaehltesFeld, this);
 			Spiel.getInstance().spielerwechsel();
 		}
 	}

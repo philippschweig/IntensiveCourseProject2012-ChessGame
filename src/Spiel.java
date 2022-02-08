@@ -1,4 +1,4 @@
-public class Spiel implements IKoenig
+public class Spiel implements IKoenig, IBauer
 {
 	// Globale Instanz
 	private static Spiel instance = null;
@@ -28,8 +28,8 @@ public class Spiel implements IKoenig
 	{
 		this.b = bTemp;
 		
-		this.s1 = new Spieler(s1, 0, this.b, this);
-		this.s2 = new Spieler(s2, 1, this.b, this);
+		this.s1 = new Spieler(s1, 0, this.b, this, this);
+		this.s2 = new Spieler(s2, 1, this.b, this, this);
 	}
 	
 	// IKoenig
@@ -38,6 +38,13 @@ public class Spiel implements IKoenig
 		this.ende = true;
 	}
 	// IKoenig
+	
+	// IBauer
+	public String Tausche()
+	{
+		return this.callback.BauerTausch();
+	}
+	// IBauer
 	
 	// Methoden
 	public Spieler aktuellerSpieler()

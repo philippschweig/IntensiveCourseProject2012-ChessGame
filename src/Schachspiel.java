@@ -170,9 +170,20 @@ public class Schachspiel extends JFrame implements IGameCallback
 		
 		if(0 == JOptionPane.showConfirmDialog(this, "Zurück zur Hauptseite?", "Zurück", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE))
 		{
+			this.schachbrett.loescheAlleFiguren();
+			
 			CardLayout cl = (CardLayout)this.cp.getLayout();
 			cl.show(this.cp, "plStart");
 		}
+	}
+	
+	public String BauerTausch()
+	{
+		String[] strings = {"Turm", "Springer", "Laeufer", "Dame"};
+		Object[] options = {"OK"};
+		String auswahl = Tools.auswahlbox("Wähle eine Figur aus:", "Figurauswahl", strings, options, 3);
+		
+		return auswahl;
 	}
 	// IGameCallback # ende #
 	

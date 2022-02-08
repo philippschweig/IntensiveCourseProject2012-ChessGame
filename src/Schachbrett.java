@@ -118,12 +118,15 @@ public class Schachbrett extends JPanel implements MouseListener
 	
 	public void loescheAlleFiguren()
 	{
-		for(int x = 1, y = 1; x < this.felder.length - 1 && y < this.felder[x].length - 1; x++, y++)
+		for(int x = 1; x < this.felder.length - 1; x++)
 		{
-			this.felder[x][y].loescheFigur();
+			for(int y = 1; y < this.felder[x].length - 1; y++)
+			{
+				this.felder[x][y].loescheFigur();
+			}
 		}
 		
-		gewaehltesFeld = null;
+		this.gewaehltesFeld = null;
 	}
 	
 	public void feldAktivieren(Position pos)

@@ -1,15 +1,21 @@
 import javax.swing.*;
 import java.util.*;
+import java.lang.reflect.*;
 
 public class F_Bauer extends Figur
 {
 	// Eigenschaften
 	private boolean ersterZug;
 	
+	// Figurentausch-Callback
+	private IBauer callback_ch;
+	
 	// Methoden
-	public F_Bauer(String name, Position pos, int farbe, Schachfeld[][] felderTemp)
+	public F_Bauer(String name, Position pos, int farbe, Schachfeld[][] felderTemp, IBauer c)
 	{
 		super(name, pos, farbe, felderTemp);
+		
+		this.callback_ch = c;
 		
 		if(this.farbe == 0)
 		{
@@ -35,14 +41,30 @@ public class F_Bauer extends Figur
 		
 		if(pos.zahl == 1 || pos.zahl == 8)
 		{
-			this.austauschen();
-			
 			// Figurauswahl
-			// ...
+			String classString = this.callback_ch.Tausche();
 			
-			Figur f = new F_Dame("Dame", pos, this.farbe, this.alleFelder);
-			Spiel.getInstance().aktuellerSpieler().schachfiguren.add(f);
-			feldNeu.setzeFigur(f);
+			try
+			{
+				Class fclass = Class.forName("F_" + classString);
+				
+				Constructor c = fclass.getConstructor(
+					new Class[] {String.class, Position.class, int.class, Schachfeld[][].class}
+				);
+				
+				this.austauschen();
+			
+				Object[] arguments = new Object[] {classString, pos, this.farbe, this.alleFelder};
+				Figur f = (Figur)c.newInstance(arguments);
+				
+				Spiel.getInstance().aktuellerSpieler().schachfiguren.add(f);
+				feldNeu.setzeFigur(f);
+			}
+			catch(ClassNotFoundException e) {}
+			catch(NoSuchMethodException e) {}
+			catch(InstantiationException e) {}
+			catch(IllegalAccessException e) {}
+			catch(InvocationTargetException e) {}
 		}
 	}
 	

@@ -11,17 +11,17 @@ public class Spieler
 	public List<Figur> schachfiguren = new ArrayList<Figur>();
 	
 	// Konstruktor
-	public Spieler(String name, int farbe, Schachbrett bTemp, IKoenig c)
+	public Spieler(String name, int farbe, Schachbrett bTemp, IKoenig cK, IBauer cB)
 	{
 		this.b = bTemp;
 		this.name = name;
 		this.farbe = farbe;
-		this.ladeFiguren(c);
+		this.ladeFiguren(cK, cB);
 		this.setzeFiguren();
 	}
 	
 	// Methoden
-	private void ladeFiguren(IKoenig c)
+	private void ladeFiguren(IKoenig cK, IBauer cB)
 	{
 		// Schwarze Figuren
 		if(this.farbe == 0)
@@ -30,7 +30,7 @@ public class Spieler
 			for(int i = 1; i < 9; i++)
 			{
 				//this.schachfiguren.add( new Schachfigur("Bauer " + i, new Position(7,i), 0, this.farbe, this.b) );
-				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(7,i), this.farbe, this.b.felder) );
+				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(7,i), this.farbe, this.b.felder, cB) );
 			}
 			
 			// Turm
@@ -49,7 +49,7 @@ public class Spieler
 			this.schachfiguren.add( new F_Dame("Dame", new Position(8,4), this.farbe, this.b.felder) );
 			
 			// König
-			this.schachfiguren.add( new F_Koenig("König", new Position(8,5), this.farbe, this.b.felder, c) );
+			this.schachfiguren.add( new F_Koenig("König", new Position(8,5), this.farbe, this.b.felder, cK) );
 		}
 		// Weiße Figuren
 		else
@@ -58,7 +58,7 @@ public class Spieler
 			for(int i = 1; i < 9; i++)
 			{
 				//this.schachfiguren.add( new Schachfigur("Bauer " + i, new Position(2,i), this.farbe, this.b) );
-				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(2,i), this.farbe, this.b.felder) );
+				this.schachfiguren.add( new F_Bauer("Bauer " + i, new Position(2,i), this.farbe, this.b.felder, cB) );
 			}
 			
 			// Turm
@@ -77,7 +77,7 @@ public class Spieler
 			this.schachfiguren.add( new F_Dame("Dame", new Position(1,4), this.farbe, this.b.felder) );
 			
 			// König
-			this.schachfiguren.add( new F_Koenig("Koenig", new Position(1,5), this.farbe, this.b.felder, c) );
+			this.schachfiguren.add( new F_Koenig("Koenig", new Position(1,5), this.farbe, this.b.felder, cK) );
 		}
 	}
 	
