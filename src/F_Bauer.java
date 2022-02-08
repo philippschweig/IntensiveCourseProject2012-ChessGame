@@ -3,12 +3,12 @@ public class F_Bauer extends Figur
 	// Eigenschaften
 	
 	// Methoden
-	public F_Bauer(String name)
+	public F_Bauer(String name, Position pos)
 	{
-		super(name);
+		super(name, pos);
 	}
 	// Figur bewegen
-	private void bewege() {}
+	public void bewege() {}
 	// Mögl. Züge anzeigen
 	public void zuege() {}
 }

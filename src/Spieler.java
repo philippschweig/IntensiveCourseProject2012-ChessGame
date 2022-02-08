@@ -15,25 +15,40 @@ public class Spieler
 	{
 		this.b = bTemp;
 		this.name = name;
+		this.farbe = farbe;
 		this.ladeFiguren();
 		this.setzeFiguren();
 	}
 	
 	private void ladeFiguren()
 	{
-		for(int i = 1; i < 9; i++)
+		if(this.farbe == 0)
 		{
-			this.schachfiguren.add( new Schachfigur("Bauer " + i, 0) );
-			this.b.felder[2][i].setzeFigur(this.schachfiguren.get(i - 1));
+			// Bauernreihe
+			for(int i = 1; i < 9; i++)
+			{
+				this.schachfiguren.add( new Schachfigur("Bauer " + i, new Position(2,i) , 0) );
+			}
+			
+			// Dame
+			this.schachfiguren.add( new Schachfigur("Dame", new Position(1,4), 1) );
+		}
+		else
+		{
+			// Bauernreihen
+			for(int i = 1; i < 9; i++)
+			{
+				this.schachfiguren.add( new Schachfigur("Bauer " + i, new Position(7,i), 0) );
+			}
+			
+			// Dame
+			this.schachfiguren.add( new Schachfigur("Dame", new Position(8,4), 1) );
 		}
 	}
 	
 	private void setzeFiguren()
 	{
-		if(this.farbe == 0)
-		{
-			
-		}
+		this.b.setzeFiguren(this.schachfiguren);
 	}
 	
 	// Methoden

@@ -3,7 +3,7 @@
 -- Position, Schachfigur, SF_Bauer, SF_Dame, SF_Koenig, SF_Laeufer, SF_Springer, SF_Turm, Spiel, Schachbrett
 
 13.01.12
-- 
+- alle Klassen die von Figur erben heißen jetzt nicht SF_#name# sondern F_#name#
 
 20.01.12
 - Umändern von Schachbrett Panel in GridBagLayout
@@ -14,3 +14,9 @@
 - Daten von 20.01.12 über Bord werfen und auf die Daten vom 13.01.12 übernehmen.
 - Anordnung des Schachbrettes durch ein GridBagLayout
 - Farben der Schachfelder gestalten
+- Bauern auf's Schachfeld laden
+
+02.02.12
+- Figur-Klasse als abstrakt deklarieren
+-- alle Klassen die von Figur erbene müssen alle abstrakten Methoden definieren
+- Dame auf's Schachfeld laden

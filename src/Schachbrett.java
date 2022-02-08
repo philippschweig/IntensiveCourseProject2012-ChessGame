@@ -65,7 +65,8 @@ public class Schachbrett extends JPanel
 				}
 				else
 				{
-					feldbeschreibung = "B" + f1 + ", Z" + f2;
+					//feldbeschreibung = "B" + f1 + ", Z" + f2;
+					feldbeschreibung = "";
 					figur = true;
 				}
 				
@@ -78,6 +79,39 @@ public class Schachbrett extends JPanel
 	// Methoden
 	public void setzeFiguren(java.util.List<Schachfigur> figuren)
 	{
+		Schachfigur tempFigur;
 		
+		for(int i = 0; i < figuren.size(); i++)
+		{
+			tempFigur = figuren.get(i);
+			this.felder[tempFigur.getPosition().buchstabe][tempFigur.getPosition().zahl].setzeFigur(tempFigur);
+		}
+	}
+	
+	public void alleFelderDeaktivieren()
+	{
+		for(int x = 1; x < felder.length - 1; x++)
+		{
+			for(int y = 1; y < felder[x].length - 1; y++)
+			{
+				felder[x][y].feldDeaktivieren();
+			}
+		}
+	}
+	
+	public void feldDeaktivieren(Position pos)
+	{
+		this.felder[pos.buchstabe][pos.zahl].feldDeaktivieren();
+	}
+	
+	public void felderDeaktivieren(java.util.List<Schachfigur> figuren)
+	{
+		Schachfigur tempFigur;
+		
+		for(int i = 0; i < figuren.size(); i++)
+		{
+			tempFigur = figuren.get(i);
+			this.felder[tempFigur.getPosition().buchstabe][tempFigur.getPosition().zahl].feldDeaktivieren();
+		}
 	}
 }

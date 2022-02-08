@@ -1,0 +1,78 @@
+[Files]
+File0=F_Bauer.java
+File1=F_Dame.java
+File2=Schachbrett.java
+File3=Schachfeld.java
+File4=Schachfigur.java
+File5=Schachspiel.java
+File6=Spiel.java
+File7=Spieler.java
+
+[Box:  - F_Bauer]
+X=120
+Y=649
+MinVis=0
+
+[Box:  - F_Dame]
+X=320
+Y=646
+MinVis=0
+
+[Box:  - Schachbrett]
+X=60
+Y=168
+MinVis=0
+
+[Box:  - Schachfeld]
+X=59
+Y=358
+MinVis=0
+
+[Box:  - Schachfigur]
+X=310
+Y=461
+MinVis=0
+
+[Box:  - Schachspiel]
+X=208
+Y=17
+MinVis=0
+
+[Box:  - Spiel]
+X=417
+Y=84
+MinVis=0
+
+[Box:  - Spieler]
+X=297
+Y=258
+MinVis=0
+
+[Diagram]
+OffsetX=0
+OffsetY=0
+ShowAssoc=1
+Visibility=0
+ShowParameter=0
+SortOrder=0
+ShowIcons=0
+Fontname=MS Sans Serif
+Fontsize=10
+
+[Connections]
+V0=Schachbrett # Schachfeld # 2
+V1=Schachfeld # Schachfigur # 1
+V2=Schachfigur # F_Bauer # 1
+V3=Schachfigur # F_Dame # 1
+V4=Schachspiel # Schachbrett # 1
+V5=Schachspiel # Spiel # 1
+V6=Spiel # Schachbrett # 1
+V7=Spiel # Spieler # 1
+V8=Spieler # Schachbrett # 1
+
+[Window]
+Left=100
+Top=100
+Width=868
+Height=246
+

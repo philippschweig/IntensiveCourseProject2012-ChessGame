@@ -31,11 +31,11 @@ public class Schachfeld
 		if(figurfeld)
 		{
 			this.lbFeld.setOpaque(true);
-			this.lbFeld.setVisible(false);
+			this.lbFeld.setVisible(true);
 			
 			this.btFeld = new JButton("B: " + spalte + ", Z: " + zeile);
 			this.btFeld.setMargin(new Insets(2, 2, 2, 2));
-			this.btFeld.setVisible(true);
+			this.btFeld.setVisible(false);
 			
 			if( this.schwarzesFeld(spalte, zeile) )
 			{
@@ -77,14 +77,17 @@ public class Schachfeld
 		this.figur = figur;
 		
 		this.lbFeld.setText(this.figur.getName());
+		this.lbFeld.setVisible(false);
+		
 		this.btFeld.setText(this.figur.getName());
+		this.btFeld.setVisible(true);
 		
 	}
 	
 	// Wird ausgeführt, wenn der Button geklickt wird
 	public void btFeld_ActionPerformed(ActionEvent evt) {
 		// TODO hier Quelltext einfügen
-		this.btFeld.setText("@");
+		this.b.alleFelderDeaktivieren();
 	}
 	
 	// Prüft ob das Feld mit der gegebenen Spalte und Ziele ein schwarzes Feld ist
@@ -117,6 +120,12 @@ public class Schachfeld
 		{
 			return false;
 		}
+	}
+	
+	public void feldDeaktivieren()
+	{
+		this.btFeld.setVisible(false);
+		this.lbFeld.setVisible(true);
 	}
 	
 	// Fügt ein Objekt in das GridBagLayout ein

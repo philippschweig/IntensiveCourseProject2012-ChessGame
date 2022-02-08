@@ -1,17 +1,21 @@
-public class Figur
+abstract class Figur
 {
 	// Eigenschaften
 	// Name einer Figur
 	public String name;
-	private boolean besiegt = false;
+	public Position pos;
+	public boolean besiegt = false;
 	
 	// Methoden
-	public Figur(String name)
+	public Figur(String name, Position pos)
 	{
 		this.name = name;
+		this.pos = pos;
 	}
+	
 	// Figur bewegen
-	private void bewege() {}
+	public abstract void bewege();
+	
 	// Mögl. Züge anzeigen
-	public void zuege() {}
+	public abstract void zuege();
 }
