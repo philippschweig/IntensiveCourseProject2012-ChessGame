@@ -1,4 +1,4 @@
-public class Spiel
+public class Spiel implements IKoenig
 {
 	// Globale Instanz
 	private static Spiel instance = null;
@@ -7,27 +7,38 @@ public class Spiel
 		return instance;
 	}
 	
-	public static void setInstance(Schachbrett bTemp)
+	public static void setInstance(Schachbrett bTemp, IGameCallback c)
 	{
 		instance = new Spiel(bTemp);
+		instance.callback = c;
 	}
 	
 	// Eigenschaften
 	private Schachbrett b;
+	private IGameCallback callback;
 	
 	public Spieler s1;
 	public Spieler s2;
 	
 	private int aktuellerSpieler = 2;
+	private boolean ende = false;
 	
 	// Konstruktor
 	private Spiel(Schachbrett bTemp)
 	{
 		this.b = bTemp;
 		
-		s1 = new Spieler("Spieler 1", 0, this.b);
-		s2 = new Spieler("Spieler 2", 1, this.b);
+		s1 = new Spieler("Schwarz", 0, this.b, this);
+		s2 = new Spieler("Weiﬂ", 1, this.b, this);
 	}
+	
+	// IKoenig
+	public void SchachMatt(Object o)
+	{
+		this.callback.GameOver(gegnerischerSpieler());
+		this.ende = true;
+	}
+	// IKoenig
 	
 	// Methoden
 	public Spieler aktuellerSpieler()
@@ -56,20 +67,28 @@ public class Spiel
 	
 	public void spielerwechsel()
 	{
-		if(aktuellerSpieler == 1)
+		if(!this.ende)
 		{
-			aktuellerSpieler = 2;
-		}
-		else
-		{
-			aktuellerSpieler = 1;
-		}
+			if(aktuellerSpieler == 1)
+			{
+				aktuellerSpieler = 2;
+			}
+			else
+			{
+				aktuellerSpieler = 1;
+			}
 		
-		aktuellerSpieler().aktiviereZug();
+			aktuellerSpieler().aktiviereZug();
+		}
 	}
 	
 	public void starten()
 	{
 		aktuellerSpieler().aktiviereZug();
+	}
+	
+	private void beenden()
+	{
+		
 	}
 }

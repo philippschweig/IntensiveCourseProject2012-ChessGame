@@ -103,7 +103,6 @@ public class Schachfeld
 		this.btFeld.setVisible(true);
 	}
 	
-	
 	public void loescheFigur()
 	{
 		System.out.println("Schachfeld/loescheFigur # ");
@@ -207,6 +206,8 @@ public class Schachfeld
 		this.btFeld.setVisible(false);
 		this.lbFeld.setVisible(true);
 	}
+	
+	// Feld zerstören
 	
 	// Fügt ein Objekt in das GridBagLayout ein
 	private void add(

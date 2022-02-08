@@ -7,10 +7,14 @@ public class F_Koenig extends Figur
 	private boolean ersterZug;
 	public boolean rochade;
 	
+	private IKoenig callback_sm;
+	
 	// Methoden
-	public F_Koenig(String name, Position pos, int farbe, Schachfeld[][] felderTemp)
+	public F_Koenig(String name, Position pos, int farbe, Schachfeld[][] felderTemp, IKoenig c)
 	{
 		super(name, pos, farbe, felderTemp);
+		
+		this.callback_sm = c;
 		
 		if(this.farbe == 0)
 		{
@@ -66,7 +70,12 @@ public class F_Koenig extends Figur
 			tempFigur.feld.setzeFigur(tempFigur);
 		}
 	}
-	
+	// Figur besiegen
+	public void besiege()
+	{
+		super.besiege();
+		this.callback_sm.SchachMatt(new Object());
+	}
 	// Mögl. Züge anzeigen
 	public List<Position> zuege()
 	{
