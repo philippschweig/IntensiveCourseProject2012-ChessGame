@@ -93,6 +93,7 @@ public class Schachfeld
 	public void setzeFigur(Figur figur)
 	{
 		this.figur = figur;
+		this.figur.feld = this;
 		
 		//this.lbFeld.setText(this.figur.name);
 		this.lbFeld.setIcon(this.figur.icon);

@@ -54,3 +54,6 @@
 
 25.02.12
 - Figurauswahl hinzugefügt, wenn Bauer am Ende angekommen ist.
+
+27.02.12
+- Fehler behoben, wenn Bauer ausgetauscht wurde und die ausgetauschte Figur gleich geschlagen wurden (kam zur NullPointerExeption)

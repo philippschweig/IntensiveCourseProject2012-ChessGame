@@ -138,9 +138,9 @@ public class Spieler
 		List<Position> zuege = new ArrayList<Position>();
 		
 		// Alle Figuren durchgehen
-		for(int i = 0; i < Spiel.getInstance().gegnerischerSpieler().schachfiguren.size(); i++)
+		for(int i = 0; i < this.schachfiguren.size(); i++)
 		{
-			zuege.addAll(Spiel.getInstance().gegnerischerSpieler().schachfiguren.get(i).zuege());
+			zuege.addAll(this.schachfiguren.get(i).zuege());
 		}
 		
 		// Doppelte Einträge löschen
@@ -158,7 +158,7 @@ public class Spieler
 			}
 		}*/
 		
-		Position.debugPositionList(zuege);
+		//Position.debugPositionList(zuege);
 		
 		return zuege;
 	}

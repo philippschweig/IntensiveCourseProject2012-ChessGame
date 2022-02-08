@@ -12,7 +12,6 @@ public class Position
 	
 	public boolean angriff = false;
 	public boolean spielzug = false;
-	public boolean rochade = false;
 	
 	// Konstruktoren
 	public Position()
@@ -41,6 +40,19 @@ public class Position
 		this.set(z, b);
 		this.angriff = a;
 		this.spielzug = true;
+	}
+	
+	public static boolean pruefeObPosInListVorhanden(List<Position> poslist, Position pos)
+	{
+		for(int x = 0; x < poslist.size(); x++)
+		{
+			if(poslist.get(x).buchstabe == pos.buchstabe && poslist.get(x).zahl == pos.zahl)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public static void debugPositionList(List<Position> poslist)

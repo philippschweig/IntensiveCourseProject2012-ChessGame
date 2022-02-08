@@ -44,12 +44,12 @@ abstract class Figur
 			feldNeu.figur.besiege();
 		}
 		
-		this.setze(feldNeu);
+		//this.setze(feldNeu);
 		feldAlt.loescheFigur();
 		System.out.println("Figur/bewege # zahl: " + pos.zahl + " buchstabe: " + pos.buchstabe);
 		this.pos = pos;
 		//this.alleFelder[this.pos.zahl][this.pos.buchstabe].figur = this;
-		this.feld.setzeFigur(this);
+		feldNeu.setzeFigur(this);
 	}
 	
 	// Figur austauschen

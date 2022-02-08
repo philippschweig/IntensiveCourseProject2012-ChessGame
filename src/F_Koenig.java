@@ -10,7 +10,7 @@ public class F_Koenig extends Figur
 	// SchachMatt-Callback
 	private IKoenig callback_sm;
 	
-	// Methoden
+	// Konstruktoren
 	public F_Koenig(String name, Position pos, int farbe, Schachfeld[][] felderTemp, IKoenig c)
 	{
 		super(name, pos, farbe, felderTemp);
@@ -29,6 +29,7 @@ public class F_Koenig extends Figur
 		this.ersterZug = true;
 	}
 	
+	// Methoden
 	// Figur bewegen
 	public void bewege(Position pos, Schachfeld feldAlt, Schachfeld feldNeu)
 	{
@@ -54,29 +55,29 @@ public class F_Koenig extends Figur
 					((F_Turm)this.alleFelder[this.pos.zahl][1].figur).rochade(false);
 				}
 			}
-			
-			// Rochade vollziehen
-			if(pos.rochade == true)
-			{
-				System.out.println("rochade");
-				
-			}
 		}
 		
 		super.bewege(pos, feldAlt, feldNeu);
 	}
+	
 	// Figur besiegen
 	public void besiege()
 	{
 		super.besiege();
 		this.callback_sm.SchachMatt(new Object());
 	}
+	
+	public boolean InSchachZiehen(Position pos)
+	{
+		return false;
+	}
+	
 	// Mögl. Züge anzeigen
 	public List<Position> zuege()
 	{
 		List<Position> moeglichePositionen = new ArrayList<Position>();
 		
-		// kleine Rochade
+		// Rochade
 		if(this.ersterZug)
 		{
 			// kleine Rochade
@@ -90,7 +91,6 @@ public class F_Koenig extends Figur
 						{
 							moeglichePositionen.add(new Position(this.pos.zahl, this.pos.buchstabe + 2,	false));
 						}
-						
 					}
 				}
 			}
