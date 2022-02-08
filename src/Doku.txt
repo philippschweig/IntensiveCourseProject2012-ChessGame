@@ -18,10 +18,27 @@
 
 02.02.12
 - Figur-Klasse als abstrakt deklarieren
--- alle Klassen die von Figur erbene müssen alle abstrakten Methoden definieren
+-- alle Klassen die von Figur erben, müssen alle abstrakten Methoden definieren
 - Dame auf's Schachfeld laden
 - Spiel mit Globaler Instanz instanziieren
 - Schachfigur Klasse löschen, da man F_#name# auf Figur setzen kann (dank Vererbung)
 - Dreh und Angelpunkt ist jetzt nicht mehr das Schachfeld sondern die Figur
+
+03.02.12
 - Ordner Images angelegt
 - erstes Figurbild hinzugefügt
+
+04.02.12 - 05.02.12
+- kleine Änderungen
+
+06.02.12
+- Klassen GUIObjektDaten und Koordinaten angelegt
+- Regeln den einzelnen Figuren hinzugefügt
+-- Rochade angelegt
+- Figuren können sich nun bewegen
+
+08.02.12
+- Rochaderegel falsch => muss noch behoben werden
+
+10.02.12
+- Spiel ist erstmal spielbar, es fehlen noch ein paar Regeln

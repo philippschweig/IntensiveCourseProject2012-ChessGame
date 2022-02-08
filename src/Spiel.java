@@ -35,7 +35,6 @@ public class Spiel implements IKoenig
 	// IKoenig
 	public void SchachMatt(Object o)
 	{
-		this.callback.GameOver(gegnerischerSpieler());
 		this.ende = true;
 	}
 	// IKoenig
@@ -77,8 +76,12 @@ public class Spiel implements IKoenig
 			{
 				aktuellerSpieler = 1;
 			}
-		
+			
 			aktuellerSpieler().aktiviereZug();
+		}
+		else
+		{
+			this.callback.GameOver(gegnerischerSpieler());
 		}
 	}
 	

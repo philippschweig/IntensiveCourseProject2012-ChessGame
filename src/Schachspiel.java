@@ -5,17 +5,24 @@ import javax.swing.event.*;
 
 /**
   *
-  * Beschreibung
+  * Schachspiel
   *
   * @version 1.0 vom 07.01.2012
-  * @author
+  * @author Philipp Schweig
   */
 
 public class Schachspiel extends JFrame implements IGameCallback
 {
 	// Anfang Attribute
-	private Schachbrett schachbrett;
+	private JPanel plStart;
+	private Panel plSpiel;
 	
+	// Startobjekte
+	private JLabel lbSpieler1, lbSpieler2;
+	private JTextField tfSpieler1, tfSpieler2;
+	
+	// Spielobjekte
+	private Schachbrett schachbrett;
 	private JButton btnNeuesSpiel, btnSpielBeenden, btnNurKoenig;
 	// Ende Attribute
 
@@ -39,14 +46,44 @@ public class Schachspiel extends JFrame implements IGameCallback
 		this.setResizable(false);
 		
 		Container cp = this.getContentPane();
-		cp.setLayout(null);
+		cp.setLayout(new CardLayout());
 		
 		// Anfang Komponenten
+		// Startoberfläche
+		GUIObjektDaten guiStartPanel = new GUIObjektDaten(new Koordinaten(GUIObjektDaten.zentriertX(frameWidth, 200),30), 200, 100);
+		
+		this.plStart = new JPanel(new SpringLayout());
+		this.plStart.setBounds(guiStartPanel.x(), guiStartPanel.y(), guiStartPanel.breite, guiStartPanel.hoehe);
+		
+		//GUIObjektDaten guiSpieler = new GUIObjektDaten(75, 35);
+		this.lbSpieler1 = new JLabel("Spieler 1 (weiß):");
+		this.plStart.add(this.lbSpieler1);
+		
+		this.tfSpieler1 = new JTextField(64);
+		lbSpieler1.setLabelFor(tfSpieler1);
+		this.plStart.add(this.tfSpieler1);
+		
+		this.lbSpieler2 = new JLabel("Spieler 2 (schwarz):");
+		this.plStart.add(this.lbSpieler1);
+		
+		this.tfSpieler2 = new JTextField(64);
+		lbSpieler2.setLabelFor(tfSpieler2);
+		this.plStart.add(this.tfSpieler2);
+		
+		SpringUtilities.makeCompactGrid(this.plStart, 3, 2, 6,6,6,6);
+		
+		cp.add(plStart, "plStart");
+		
+		// Spieloberfläche
+		this.plSpiel = new Panel(null);
+		
+		// Schachbrett
 		GUIObjektDaten guiSchachbrett = new GUIObjektDaten(new Koordinaten(GUIObjektDaten.zentriertX(frameWidth, 550),30), 550, 550);
 		this.schachbrett = new Schachbrett();
 		this.schachbrett.setBounds(guiSchachbrett.x(), guiSchachbrett.y(), guiSchachbrett.breite, guiSchachbrett.hoehe);
-		cp.add(this.schachbrett);
+		this.plSpiel.add(this.schachbrett);
 		
+		// Buttons
 		GUIObjektDaten guiNurKoenig = new GUIObjektDaten(guiSchachbrett.x(), guiSchachbrett.y() + guiSchachbrett.hoehe + 15, 100, 25);
 		this.btnNurKoenig = new JButton("Nur König");
 		this.btnNurKoenig.setBounds(guiNurKoenig.x(), guiNurKoenig.y(), guiNurKoenig.breite, guiNurKoenig.hoehe);
@@ -59,7 +96,9 @@ public class Schachspiel extends JFrame implements IGameCallback
 			}
 		);
 		
-		cp.add(this.btnNurKoenig);
+		this.plSpiel.add(this.btnNurKoenig);
+		
+		cp.add(plSpiel, "plSpiel");
 		
 		// Ende Komponenten
 
@@ -88,7 +127,9 @@ public class Schachspiel extends JFrame implements IGameCallback
 	
 	public void GameOver(Object o)
 	{
-		System.out.println(((Spieler)o).name + " hat verloren.");
+		JOptionPane.showMessageDialog(null,((Spieler)o).name + " hat verloren.","Spielende", JOptionPane.PLAIN_MESSAGE);
+		
+		JOptionPane.showInternalConfirmDialog(this, "Wollen Sie das Dokument vor dem Beenden speichern?", "Speichern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 	}
 	// IGameCallback # ende #
 	
