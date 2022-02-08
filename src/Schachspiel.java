@@ -13,6 +13,7 @@ public class Schachspiel extends Frame {
 	// Anfang Attribute
 	private Schachbrett schachbrett;
 	private static Spiel spiel;
+	private Panel gamePanel;
 	// Ende Attribute
 
 	public Schachspiel(String title) {
@@ -33,10 +34,14 @@ public class Schachspiel extends Frame {
 		add(cp);
 		
 		// Anfang Komponenten
-		this.schachbrett = new Schachbrett();
-		this.schachbrett.setBounds(75, 75, frameWidth - 200, frameHeight - 200);
-		this.schachbrett.setLayout(new GridLayout(10,10,1,1));
-		cp.add(schachbrett);
+		this.gamePanel = new Panel();
+		
+		this.schachbrett = new Schachbrett(this.gamePanel);
+		this.gamePanel.setLayout(this.schachbrett);
+		
+		//this.schachbrett.setBounds(110, 75, frameWidth - 200, frameHeight - 200);
+		//this.schachbrett.setLayout(new GridLayout(10,10,1,1));
+		cp.add(gamePanel);
 		
 		// Ende Komponenten
 

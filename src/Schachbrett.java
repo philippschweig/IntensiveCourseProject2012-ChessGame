@@ -2,17 +2,21 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Schachbrett extends Panel
+public class Schachbrett extends GridBagLayout
 {
 	// Eigenschaften
 	// [Buchstaben][]
+	private Panel gamePanel;
 	public Schachfeld felder[][] = new Schachfeld[10][10];
+	
 	// Konstruktor
-	public Schachbrett()
+	public Schachbrett(Panel gamePanel)
 	{
-		super(null);
+		//super(null);
+		this.gamePanel = gamePanel;
 		
 		String feldbeschreibung = new String();
+		boolean figurplatz = false;
 		
 		for(int f1 = 0; f1 < felder.length; f1++)
 		{
@@ -58,10 +62,12 @@ public class Schachbrett extends Panel
 				else
 				{
 					feldbeschreibung = "B" + f1 + ", Z" + f2;
+					figurplatz = true;
 				}
 				
 				
-				felder[f1][f2] = new Schachfeld(feldbeschreibung, this);
+				felder[f1][f2] = new Schachfeld(this, this.gamePanel);
+				felder[f1][f2].add(f2, f1, feldbeschreibung, figurplatz);
 			}
 		}
 	}
