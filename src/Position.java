@@ -14,9 +14,6 @@ public class Position
 	public boolean spielzug = false;
 	public boolean rochade = false;
 	
-	// Position des Turmes bei der Rochade
-	public Position turm;
-	
 	// Konstruktoren
 	public Position()
 	{
@@ -32,12 +29,6 @@ public class Position
 		this.set(z, b, a);
 	}
 	
-	// Position für Rochade
-	public Position(int z, int b, boolean a, Position turm)
-	{
-		this.set(z, b, a, turm);
-	}
-	
 	// Methoden
 	public void set(int z, int b)
 	{
@@ -50,13 +41,6 @@ public class Position
 		this.set(z, b);
 		this.angriff = a;
 		this.spielzug = true;
-	}
-	
-	public void set(int z, int b, boolean a, Position turm)
-	{
-		this.set(z, b, a);
-		this.rochade = true;
-		this.turm = turm;
 	}
 	
 	public static void debugPositionList(List<Position> poslist)

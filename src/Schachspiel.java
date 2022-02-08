@@ -36,7 +36,7 @@ public class Schachspiel extends JFrame implements IGameCallback
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
 		//int frameWidth = 700;
-		int frameWidth = 1000;
+		int frameWidth = 850;
 		//int frameHeight = 700;
 		int frameHeight = 700;
 		
@@ -105,7 +105,7 @@ public class Schachspiel extends JFrame implements IGameCallback
 		this.plSpiel.add(this.lbS1);
 		
 		this.lbS2 = new Label();
-		this.lbS2.setBounds(850, 30, 75, 35);
+		this.lbS2.setBounds(725, 30, 75, 35);
 		this.plSpiel.add(this.lbS2);
 		
 		// Schachbrett
@@ -134,8 +134,6 @@ public class Schachspiel extends JFrame implements IGameCallback
 		// Ende Komponenten
 
 		this.setVisible(true);
-		
-		//this.NeuesSpiel();
 	}
 
 	// Anfang Methoden
@@ -146,8 +144,6 @@ public class Schachspiel extends JFrame implements IGameCallback
 		
 		this.lbS1.setText(Spiel.getInstance().s2.name);
 		this.lbS2.setText(Spiel.getInstance().s1.name);
-		
-		this.setSize(1000, 700);
 		
 		CardLayout cl = (CardLayout)this.cp.getLayout();
 		cl.show(this.cp, "plSpiel");
