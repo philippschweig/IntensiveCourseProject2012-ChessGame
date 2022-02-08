@@ -1,0 +1,154 @@
+[Files]
+File0=..\Schachspiel\F_Bauer.java
+File1=..\Schachspiel\F_Dame.java
+File2=..\Schachspiel\F_Koenig.java
+File3=..\Schachspiel\F_Laeufer.java
+File4=..\Schachspiel\F_Springer.java
+File5=..\Schachspiel\F_Turm.java
+File6=..\Schachspiel\Figur.java
+File7=..\Schachspiel\GUIObjektDaten.java
+File8=..\Schachspiel\IBauer.java
+File9=..\Schachspiel\IGameCallback.java
+File10=..\Schachspiel\IKoenig.java
+File11=..\Schachspiel\Koordinaten.java
+File12=..\Schachspiel\Position.java
+File13=..\Schachspiel\Schachbrett.java
+File14=..\Schachspiel\Schachfeld.java
+File15=..\Schachspiel\Schachspiel.java
+File16=..\Schachspiel\Spiel.java
+File17=..\Schachspiel\Spieler.java
+File18=..\Schachspiel\Tools.java
+
+[Box:  - F_Bauer]
+X=35
+Y=454
+MinVis=0
+
+[Box:  - F_Dame]
+X=263
+Y=25
+MinVis=0
+
+[Box:  - F_Koenig]
+X=308
+Y=443
+MinVis=0
+
+[Box:  - F_Laeufer]
+X=531
+Y=31
+MinVis=0
+
+[Box:  - F_Springer]
+X=46
+Y=190
+MinVis=0
+
+[Box:  - F_Turm]
+X=47
+Y=25
+MinVis=0
+
+[Box:  - Figur]
+X=258
+Y=137
+MinVis=0
+
+[Box:  - GUIObjektDaten]
+X=1057
+Y=160
+MinVis=0
+
+[Box:  - IBauer]
+X=49
+Y=621
+MinVis=0
+
+[Box:  - IGameCallback]
+X=839
+Y=921
+MinVis=0
+
+[Box:  - IKoenig]
+X=368
+Y=644
+MinVis=0
+
+[Box:  - Koordinaten]
+X=1067
+Y=18
+MinVis=0
+
+[Box:  - Position]
+X=753
+Y=19
+MinVis=0
+
+[Box:  - Schachbrett]
+X=797
+Y=395
+MinVis=0
+
+[Box:  - Schachfeld]
+X=534
+Y=241
+MinVis=0
+
+[Box:  - Schachspiel]
+X=1045
+Y=541
+MinVis=0
+
+[Box:  - Spiel]
+X=112
+Y=757
+MinVis=0
+
+[Box:  - Spieler]
+X=512
+Y=788
+MinVis=0
+
+[Box:  - Tools]
+X=1065
+Y=435
+MinVis=0
+
+[Diagram]
+OffsetX=0
+OffsetY=0
+ShowAssoc=1
+Visibility=0
+ShowParameter=0
+SortOrder=0
+ShowIcons=0
+Fontname=MS Sans Serif
+Fontsize=10
+
+[Connections]
+V0=F_Bauer#Figur#Inheritends####0#0#
+V1=F_Bauer#IBauer#AssociationDirected####0#0#
+V2=F_Dame#Figur#Inheritends####0#0#
+V3=F_Koenig#Figur#Inheritends####0#0#
+V4=F_Koenig#IKoenig#AssociationDirected####0#0#
+V5=F_Laeufer#Figur#Inheritends####0#0#
+V6=F_Springer#Figur#Inheritends####0#0#
+V7=F_Turm#Figur#Inheritends####0#0#
+V8=Figur#Schachfeld#Aggregation####0#0#
+V9=GUIObjektDaten#Koordinaten#AssociationDirected####0#0#
+V10=Schachbrett#Schachfeld#Aggregation####0#0#
+V11=Schachspiel#IGameCallback#Implements####0#0#
+V12=Schachspiel#Schachbrett#AssociationDirected####0#0#
+V13=Spiel#IKoenig#Implements####0#0#
+V14=Spiel#IBauer#Implements####0#0#
+V15=Spiel#Spiel#AssociationDirected####1#0#
+V16=Spiel#Schachbrett#AssociationDirected####0#0#
+V17=Spiel#IGameCallback#AssociationDirected####0#0#
+V18=Spiel#Spieler#AssociationDirected####0#0#
+V19=Spieler#Schachbrett#AssociationDirected####0#0#
+V20=Figur#Position#AssociationDirected####0#0#
+V21=Schachfeld#Position#AssociationDirected####0#0#
+
+[Interactive]
+I0=
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE projekt SYSTEM "file:/">
+<!--
+	Vips - Visual Programming with Structograms
+	Copyright (C) 2005 Michael Partheil, michael.partheil@gmx.de
+	All rights reserved.
+-->
+<projekt>
+   <variablen />
+   <struktogramm name="F_Koenig_bewege">
+      <dokumentation />
+      <parameter name="pos" typ="java.lang.String" />
+      <variablen />
+      <if_anweisung bedingung="ersterZug">
+         <true_zweig>
+            <zuweisungs_anweisung variable="ersterZug" wert="false" />
+            <zuweisungs_anweisung variable="schrittlaenge" wert="aktuellerBuchstabe - neuerBuchstabe" />
+            <if_anweisung bedingung="schrittlaenge &gt; 1">
+               <true_zweig>
+                  <if_anweisung bedingung="schrittlaenge == 2">
+                     <true_zweig>
+                        <aufruf_anweisung operation="untererTurm.rochade">
+                           <argument name="KLEINEROCHADE" wert="true" />
+                        </aufruf_anweisung>
+                     </true_zweig>
+                     <false_zweig>
+                        <aufruf_anweisung operation="obererTurm.rochade">
+                           <argument name="KLEINEROCHADE" wert="false" />
+                        </aufruf_anweisung>
+                     </false_zweig>
+                  </if_anweisung>
+               </true_zweig>
+               <false_zweig />
+            </if_anweisung>
+         </true_zweig>
+         <false_zweig />
+      </if_anweisung>
+      <aufruf_anweisung operation="geerbt.bewege">
+         <argument name="FELDNEU" wert="feldNeu" />
+         <argument name="POS" wert="pos" />
+         <argument name="FELDALT" wert="feldAlt" />
+      </aufruf_anweisung>
+   </struktogramm>
+   <struktogramm name="F_Turm_rochade">
+      <dokumentation />
+      <parameter name="kleineRochade" typ="java.lang.Boolean" />
+      <variablen>
+         <variable name="pos" typ="java.lang.String" />
+      </variablen>
+      <if_anweisung bedingung="kleineRochade">
+         <true_zweig>
+            <aufruf_anweisung operation="bewege">
+               <argument name="FELDNEU" wert="neuesFeldUnten" />
+               <argument name="POS" wert="neuePosition" />
+               <argument name="FELDALT" wert="altesFeld" />
+            </aufruf_anweisung>
+         </true_zweig>
+         <false_zweig>
+            <aufruf_anweisung operation="bewege">
+               <argument name="FELDNEU" wert="neuesFeldOben" />
+               <argument name="POS" wert="neuePosition" />
+               <argument name="FELDALT" wert="altesFeld" />
+            </aufruf_anweisung>
+         </false_zweig>
+      </if_anweisung>
+   </struktogramm>
+</projekt>
+
