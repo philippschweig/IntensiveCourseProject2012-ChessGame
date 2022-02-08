@@ -17,6 +17,7 @@ public class Schachspiel extends JFrame implements IGameCallback
 	private Panel plStart;
 	private Panel plSpiel;
 	private Container cp;
+	//private Label lbDeveloper;
 	
 	// Startobjekte
 	private Label lbSpieler1, lbSpieler2;
@@ -60,6 +61,10 @@ public class Schachspiel extends JFrame implements IGameCallback
 		//this.plStart.setBounds(guiStartPanel.x(), guiStartPanel.y(), guiStartPanel.breite, guiStartPanel.hoehe);
 		
 		GUIObjektDaten guiStartPanel = new GUIObjektDaten(new Koordinaten(GUIObjektDaten.zentriertX(frameWidth, 250),200), 250, 75);
+		
+		/*this.lbDeveloper = new Label("Dieses Programm ist das Resultat der Projektarbeit des Leistungskurs Informatik (Jahrgang 12-13, Schuljahr 2011/2012, Barnim Gymnasium Bernau) von Philipp Schweig.\nCopyright © by Philipp Schweig");
+		this.lbDeveloper.setBounds(0,0,100,100);
+		this.plStart.add(this.lbDeveloper);*/
 		
 		Panel tempPanel = new Panel(new GridLayout(3,2,5,5));
 		tempPanel.setBounds(guiStartPanel.x(), guiStartPanel.y(), guiStartPanel.breite, guiStartPanel.hoehe);
@@ -127,7 +132,7 @@ public class Schachspiel extends JFrame implements IGameCallback
 			}
 		);
 		
-		this.plSpiel.add(this.btnNurKoenig);
+		//this.plSpiel.add(this.btnNurKoenig);
 		
 		this.cp.add(plSpiel, "plSpiel");
 		
