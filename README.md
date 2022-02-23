@@ -7,6 +7,7 @@
 <a href="https://github.com/philippschweig/IntensiveCourseProject2012-ChessGame">
 <img height="16" src="https://github.githubassets.com/favicons/favicon.svg"> GitHub repository (mirror)
 <a/>
+<br/><br/>
 
 This is the source of the intensive course project of computer science lessons from the high school graduation year in 2012.
 
