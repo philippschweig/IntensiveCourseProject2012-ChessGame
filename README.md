@@ -13,6 +13,7 @@ This is the source of the intensive course project of computer science lessons f
 
 ## Screenshots
 
-![Screenshot 3](documentation/Screenshot3.png)
-![Screenshot 1](documentation/Screenshot.png)
-![Screenshot 2](documentation/Screenshot2.png)
+<img src="documentation/Screenshot3.png" width="450" alt="Screenshot 3">
+<br>
+<img src="documentation/Screenshot.png" width="450" alt="Screenshot 1">
+<img src="documentation/Screenshot2.png" width="450" alt="Screenshot 2">
